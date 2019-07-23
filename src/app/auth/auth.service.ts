@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
@@ -9,9 +9,7 @@ const httpOptionHeader = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const httpOptionEvent = {
-  headers: new HttpHeaders({ 'Accept': 'application/json' }),
-  observe: 'events',
-  reportProgress: true
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 @Injectable({
   providedIn: 'root'
@@ -28,10 +26,11 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptionHeader);
   }
 
-  signUp(info: FormData): Observable<HttpEvent<Object>> {
-    return this.http.post(this.signupUrl, info, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      observe: 'events',
-      reportProgress: true});
+  signUp(info: FormData): Observable<HttpEvent<{}>> {
+    const req = new HttpRequest('POST', this.signupUrl, info, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
   }
 }

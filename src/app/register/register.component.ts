@@ -42,8 +42,9 @@ export class RegisterComponent implements OnInit {
   }
 
   fileChange(event) {
-    debugger;
+    // debugger;
     this.fileList = event.target.files;
+    this.avatar = this.fileList[0];
   }
   onSubmit() {
     // debugger;
@@ -54,31 +55,36 @@ export class RegisterComponent implements OnInit {
       this.form.username,
       this.form.email,
       this.form.password,
+      this.avatar
       );
-    this.avatar = this.fileList[0];
-    this.data.append('signUpRequest', new Blob([JSON.stringify(this.signupInfo)],
-      {
-                type: 'application/json'
-              }));
-    this.data.append('avatar', this.avatar, this.form.name);
-    this.authService.signUp(this.data).pipe(
-      uploadProgress(progress => (this.progress = progress)),
-      toResponseBody()
-    ).subscribe(res => {
-      this.progress = 0;
-      this.isSignedUp = true;
-      this.signupInfo = null;
-    });
+    this.data.append('name', this.form.name);
+    this.data.append('username', this.form.username);
+    this.data.append('email', this.form.email);
+    this.data.append('password', this.form.password);
+    this.data.append('avatar', this.avatar, this.avatar.name);
+    this.data.append('role', 'user');
+    this.authService.signUp(this.data).subscribe(
+      data => {
+        console.log(data);
+        this.isSignedUp = true;
+        this.isSignUpFailed = false;
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
   }
 }
 
-// export function toFormData<T>( formValue: T ) {
-//   const formData = new FormData();
-//
-//   for ( const key of Object.keys(formValue) ) {
-//     const value = formValue[key];
-//     formData.append(key, value);
-//   }
-//
-//   return formData;
-// }
+export function toFormData<T>( formValue: T ) {
+  const formData = new FormData();
+
+  for ( const key of Object.keys(formValue) ) {
+    const value = formValue[key];
+    formData.append(key, value);
+  }
+
+  return formData;
+}
