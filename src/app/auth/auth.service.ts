@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { JwtResponse } from './jwt-response';
+import { AuthLoginInfo } from './login-info';
+
+const httpOptionHeader = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+const httpOptionEvent = {
+  headers: new HttpHeaders({ 'Accept': 'application/json' }),
+  observe: 'events',
+  reportProgress: true
+};
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  private loginUrl = 'http://localhost:8080/api/auth/signin';
+  private signupUrl = 'http://localhost:8080/api/auth/signup';
+
+  constructor(private http: HttpClient) {
+  }
+
+  attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
+    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptionHeader);
+  }
+
+  signUp(info: FormData): Observable<HttpEvent<Object>> {
+    return this.http.post(this.signupUrl, info, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      observe: 'events',
+      reportProgress: true});
+  }
+}
