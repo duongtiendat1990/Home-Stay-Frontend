@@ -5,11 +5,8 @@ import { Observable } from 'rxjs';
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
 
-const httpOptionHeader = {
+const httpOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-const httpOptionEvent = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 @Injectable({
   providedIn: 'root'
@@ -23,7 +20,7 @@ export class AuthService {
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptionHeader);
+    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOption);
   }
 
   signUp(info: FormData): Observable<HttpEvent<{}>> {

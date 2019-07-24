@@ -42,14 +42,10 @@ export class RegisterComponent implements OnInit {
   }
 
   fileChange(event) {
-    // debugger;
     this.fileList = event.target.files;
     this.avatar = this.fileList[0];
   }
   onSubmit() {
-    // debugger;
-    // console.log(this.form);
-
     this.signupInfo = new SignUpInfo(
       this.form.name,
       this.form.username,
@@ -57,12 +53,7 @@ export class RegisterComponent implements OnInit {
       this.form.password,
       this.avatar
       );
-    this.data.append('name', this.form.name);
-    this.data.append('username', this.form.username);
-    this.data.append('email', this.form.email);
-    this.data.append('password', this.form.password);
-    this.data.append('avatar', this.avatar, this.avatar.name);
-    this.data.append('role', 'user');
+    this.data = toFormData(this.signupInfo);
     this.authService.signUp(this.data).subscribe(
       data => {
         console.log(data);
