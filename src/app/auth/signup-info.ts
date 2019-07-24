@@ -2,7 +2,6 @@ export class SignUpInfo {
     name: string;
     username: string;
     email: string;
-    role: string[];
     password: string;
     avatar: File;
 
@@ -11,7 +10,6 @@ export class SignUpInfo {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = ['user'];
         this.avatar = avatar;
     }
 }
