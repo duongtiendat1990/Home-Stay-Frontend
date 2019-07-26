@@ -1,25 +1,281 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">grokonez</a>
-    </div>
-    <ul class="nav navbar-nav" routerLinkActive="active">
-      <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
-      <li *ngIf="authority === 'user'" class="nav-item">
-        <a class="nav-link" routerLink="user">User Board</a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop Homepage - Start Bootstrap Template</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand navbar-expand-lg navbar-light  fixed-top">
+  <div class="navbar-header d-flex col">
+    <a class="navbar-brand" href="#">Vinhomes<b> Skylake</b></a>
+    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
+      <span class="navbar-toggler-icon"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <!-- Collection of nav links, forms, and other content for toggling -->
+  <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+    <ul class="nav navbar-nav">
+      <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      <li class="nav-item dropdown">
+        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Region <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="dropdown-item">Aosta Valley</a></li>
+          <li><a href="#" class="dropdown-item">Lazio</a></li>
+          <li><a href="#" class="dropdown-item">Le Marche</a></li>
+          <li><a href="#" class="dropdown-item">Villas</a></li>
+        </ul>
       </li>
-      <li *ngIf="authority === 'admin'" class="nav-item">
-        <a class="nav-link" routerLink="admin">Admin Board</a>
+      <li class="nav-item active"><a href="#" class="nav-link">Services</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
+    </ul>
+    <form class="navbar-form form-inline">
+      <div class="input-group search-box">
+        <input type="text" id="search" class="form-control" placeholder="Search here...">
+        <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+      </div>
+    </form>
+    <ul class="nav navbar-nav navbar-right ml-auto">
+      <li class="nav-item">
+        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Login</a>
+        <ul class="dropdown-menu form-wrapper">
+          <li>
+            <form action="/examples/actions/confirmation.php" method="post">
+              <p class="hint-text">Sign in with your social media account</p>
+              <div class="form-group social-btn clearfix">
+                <a href="#" class="btn btn-primary pull-left"><i class="fa fa-facebook"></i> Facebook</a>
+                <a href="#" class="btn btn-info pull-right"><i class="fa fa-twitter"></i> Twitter</a>
+              </div>
+              <div class="or-seperator"><b>or</b></div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required="required">
+              </div>
+              <input type="submit" class="btn btn-primary btn-block" value="Login">
+              <div class="form-footer">
+                <a href="#">Forgot Your password?</a>
+              </div>
+            </form>
+          </li>
+        </ul>
       </li>
-      <li *ngIf="authority === 'pm'" class="nav-item">
-        <a class="nav-link" routerLink="pm">PM Board</a>
-      </li>
-      <li *ngIf="!authority" class="nav-item">
-        <a class="nav-link" routerLink="auth/login">Login</a>
+      <li class="nav-item">
+        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn mt-1 mb-1">Sign up</a>
+        <ul class="dropdown-menu form-wrapper">
+          <li>
+            <form action="/examples/actions/confirmation.php" method="post">
+              <p class="hint-text">Fill in this form to create your account!</p>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password" required="required">
+              </div>
+              <div class="form-group">
+                <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms &amp; Conditions</a></label>
+              </div>
+              <input type="submit" class="btn btn-primary btn-block" value="Sign up">
+            </form>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
 </nav>
+
+<!-- Page Content -->
 <div class="container">
-  <router-outlet></router-outlet>
+
+  <div class="row">
+    <div class="container">
+
+      <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <div class="carousel-item active">
+            <img class="d-block img-fluid" src="http://andrewthompsonconstruction.com/tcg/wp-content/uploads/2017/07/ATC-outdoor-living-space-1018-1200x350.jpg" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block img-fluid" src="https://www.precision-sd.com/wp-content/uploads/2019/04/shutterstock_557515903-1200x350.jpg" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block img-fluid" src="https://www.precision-sd.com/wp-content/uploads/2019/04/completehomeencinitasca-1200x350.jpg" alt="Third slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://www.lagunalangco.com/wp-content/uploads/2019/01/Angsana-Spa-Indulgence-Offer-700x400.jpg" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Le Marche Etna House</a>
+              </h4>
+              <h5>$24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="https://themes.getmotopress.com/villagio/wp-content/uploads/sites/8/2017/06/Depositphotos_5789835_original-717x540.jpg" height="200px" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Villa Bastilicata Grande</a>
+              </h4>
+              <h5>$24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="https://cosfa.com.vn/wp-content/uploads/2017/10/xu-huong-mau-sac-noi-that-700x400.jpg" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Summer Villa Emilia</a>
+              </h4>
+              <h5>$24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="https://themes.getmotopress.com/villagio/wp-content/uploads/sites/8/2017/06/Depositphotos_11636543_original-717x540.jpg" height="200px" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Seaside Villa Tuscany Maremma</a>
+              </h4>
+              <h5>$24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="https://themes.getmotopress.com/villagio/wp-content/uploads/sites/8/2017/06/Depositphotos_11497591_original-717x540.jpg" height="200px" width="700px" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Alps Mountains Winter Cottage Monte Bianco in Aosta Valley</a>
+              </h4>
+              <h5>$24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="https://themes.getmotopress.com/villagio/wp-content/uploads/sites/8/2017/06/Depositphotos_65899635_original-717x540.jpg"  height="200px" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Beachfront Villa Casa Aurora</a>
+              </h4>
+              <h5>$24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 </div>
+
+<footer class="py-5 bg-success">
+  <div class="container">
+    <p class="m-0 text-center text-white">Villa Bastilicata Grande</p>
+  </div>
+</footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+<!--<nav class="navbar navbar-inverse">-->
+<!--  <div class="container-fluid">-->
+<!--    <div class="navbar-header">-->
+<!--      <a class="navbar-brand" href="#">grokonez</a>-->
+<!--    </div>-->
+<!--    <ul class="nav navbar-nav" routerLinkActive="active">-->
+<!--      <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>-->
+<!--      <li *ngIf="authority === 'user'" class="nav-item">-->
+<!--        <a class="nav-link" routerLink="user">User Board</a>-->
+<!--      </li>-->
+<!--      <li *ngIf="authority === 'admin'" class="nav-item">-->
+<!--        <a class="nav-link" routerLink="admin">Admin Board</a>-->
+<!--      </li>-->
+<!--      <li *ngIf="authority === 'pm'" class="nav-item">-->
+<!--        <a class="nav-link" routerLink="pm">PM Board</a>-->
+<!--      </li>-->
+<!--      <li *ngIf="!authority" class="nav-item">-->
+<!--        <a class="nav-link" routerLink="auth/login">Login</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</nav>-->
+<!--<div class="container">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->
