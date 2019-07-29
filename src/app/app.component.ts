@@ -8,10 +8,14 @@ import { TokenStorageService } from './auth/token-storage.service';
 export class AppComponent implements OnInit {
   private roles: string[];
   private authority: string;
+  private avatarLink: string;
   constructor(private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
+      if (this.tokenStorage.getAvatarLink() !== '') {
+        this.avatarLink = this.tokenStorage.getAvatarLink();
+      }
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
         if (role === 'ROLE_ADMIN') {
