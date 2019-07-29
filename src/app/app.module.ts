@@ -15,6 +15,7 @@ import { PmComponent } from './pm/pm.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ProgressComponent } from './progress/progress.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProgressComponent } from './progress/progress.component';
     AdminComponent,
     PmComponent,
     FileUploadComponent,
-    ProgressComponent
+    ProgressComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,
