@@ -15,7 +15,7 @@ export class AuthService {
 
   private loginUrl = 'http://localhost:8080/api/auth/signin';
   private signupUrl = 'http://localhost:8080/api/auth/signup';
-
+  private  updateInfoUrl = 'http://localhost:8080/api/auth/update-info'
   constructor(private http: HttpClient) {
   }
 
@@ -25,6 +25,13 @@ export class AuthService {
 
   signUp(info: FormData): Observable<HttpEvent<{}>> {
     const req = new HttpRequest('POST', this.signupUrl, info, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
+  }
+  updateInfo(info: FormData): Observable<HttpEvent<{}>> {
+    const req = new HttpRequest('PUT', this.updateInfoUrl, info, {
       reportProgress: true,
       responseType: 'text'
     });

@@ -1,3 +1,26 @@
-<p>
-  update-profile works!
-</p>
+<div class="row col-sm-6" style="max-width:350px;">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="name">Your name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
+      <div *ngIf="f.submitted && email.invalid">
+        <div *ngIf="email.errors.required">Email is required</div>
+        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="avatar">Avatar</label>
+      <input type="file" accept="image/*" class="form-control" name="avatar" [(ngModel)]="form.avatar" #avatar="ngModel" (change)="fileChange($event)" >
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Update</button>
+      <div *ngIf="f.submitted && isUpdateFailed" class="alert alert-warning">
+        Update failed!<br/>{{errorMessage}}
+      </div>
+    </div>
+  </form>
+</div>
