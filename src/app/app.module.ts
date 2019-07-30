@@ -15,6 +15,8 @@ import { PmComponent } from './pm/pm.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ProgressComponent } from './progress/progress.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { HomeComponent } from './home/home.component';
 
@@ -30,7 +32,11 @@ import { HomeComponent } from './home/home.component';
     FileUploadComponent,
     ProgressComponent,
     UpdateProfileComponent,
-    HomeComponent
+    HomeComponent,
+    ProgressComponent,
+    ForgotPasswordComponent,
+    RestPasswordComponent,
+    UserMenuComponent
   ],
   imports: [
     BrowserModule,
