@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
@@ -15,7 +15,7 @@ export class AuthService {
 
   private loginUrl = 'http://localhost:8080/api/auth/signin';
   private signupUrl = 'http://localhost:8080/api/auth/signup';
-  private  updateInfoUrl = 'http://localhost:8080/api/auth/update-info'
+  private  updateInfoUrl = 'http://localhost:8080/api/update-info';
   constructor(private http: HttpClient) {
   }
 
@@ -30,11 +30,7 @@ export class AuthService {
     });
     return this.http.request(req);
   }
-  updateInfo(info: FormData): Observable<HttpEvent<{}>> {
-    const req = new HttpRequest('PUT', this.updateInfoUrl, info, {
-      reportProgress: true,
-      responseType: 'text'
-    });
-    return this.http.request(req);
+  updateInfo(info: FormData): Observable<JwtResponse> {
+    return this.http.put<JwtResponse>(this.updateInfoUrl, info);
   }
 }

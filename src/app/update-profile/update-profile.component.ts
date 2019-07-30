@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UpdateInfo} from '../auth/update-info';
 import {AuthService} from '../auth/auth.service';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-update-profile',
@@ -18,7 +19,7 @@ export class UpdateProfileComponent implements OnInit {
   data: FormData = new FormData();
   fileList: FileList;
   avatar: File;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -31,7 +32,6 @@ export class UpdateProfileComponent implements OnInit {
   onSubmit() {
     this.updateInfo = new UpdateInfo(
       this.form.name,
-      this.form.email,
       this.avatar
     );
     this.data = toFormData(this.updateInfo);
@@ -40,6 +40,8 @@ export class UpdateProfileComponent implements OnInit {
         console.log(data);
         this.isUpdated = true;
         this.isUpdateFailed = false;
+        this.tokenStorage.saveAvatarLink(data.avatarLink);
+        window.location.reload();
       },
       error => {
         console.log(error);
