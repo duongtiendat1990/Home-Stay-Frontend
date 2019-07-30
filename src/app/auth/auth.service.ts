@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
+import {ResetPassword} from './resetPassword';
 
 const httpOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,6 +16,9 @@ export class AuthService {
 
   private loginUrl = 'http://localhost:8080/api/auth/signin';
   private signupUrl = 'http://localhost:8080/api/auth/signup';
+  private forgotPasswordUrl = 'http://localhost:8080/api/auth/forgot-password';
+  private resetPasswordUrl = 'http://localhost:8080/api/auth/reset-password';
+
 
   constructor(private http: HttpClient) {
   }
@@ -29,5 +33,12 @@ export class AuthService {
       responseType: 'text'
     });
     return this.http.request(req);
+  }
+
+  forgotPassword(gmail: string): Observable<any> {
+    return this.http.post(this.forgotPasswordUrl, gmail);
+  }
+  restPassword(info: ResetPassword): Observable<any> {
+    return this.http.post<JwtResponse>(this.resetPasswordUrl, info , httpOption);
   }
 }

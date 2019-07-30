@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
+const AVATAR_LINK_KEY = 'AvatarLink';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,12 @@ export class TokenStorageService {
     }
 
     return this.roles;
+  }
+  public saveAvatarLink(avatarLink: string) {
+    window.localStorage.removeItem(AVATAR_LINK_KEY);
+    window.localStorage.setItem(AVATAR_LINK_KEY, avatarLink);
+  }
+  public getAvatarLink(): string {
+    return window.localStorage.getItem(AVATAR_LINK_KEY);
   }
 }

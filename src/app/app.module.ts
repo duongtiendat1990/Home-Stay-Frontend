@@ -15,7 +15,9 @@ import { PmComponent } from './pm/pm.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ProgressComponent } from './progress/progress.component';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { RestPasswordComponent } from './rest-password/rest-password.component';
+import { UserMenuComponent } from './user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     PmComponent,
     FileUploadComponent,
     ProgressComponent,
-    ForgotpasswordComponent
+    ForgotPasswordComponent,
+    RestPasswordComponent,
+    UserMenuComponent
   ],
   imports: [
     BrowserModule,
