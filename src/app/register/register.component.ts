@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../auth/auth.service';
-import {SignUpInfo} from '../auth/signup-info';
+import {UpdateInfo} from '../auth/signup-info';
 import {HttpEvent, HttpEventType, HttpResponse} from '@angular/common/http';
 import {pipe} from 'rxjs';
 import {filter, map, tap} from 'rxjs/operators';
@@ -28,7 +28,7 @@ export function toResponseBody<T>() {
 export class RegisterComponent implements OnInit {
   form: any = {};
   progress = 0;
-  signupInfo: SignUpInfo;
+  signupInfo: UpdateInfo;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
     this.avatar = this.fileList[0];
   }
   onSubmit() {
-    this.signupInfo = new SignUpInfo(
+    this.signupInfo = new UpdateInfo(
       this.form.name,
       this.form.username,
       this.form.email,

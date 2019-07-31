@@ -1,9 +1,10 @@
 <div *ngIf="isLoggedIn; else loggedOut">
   Logged in as {{roles}}.
 </div>
-
+<!--<div class="container"></div>-->
 <ng-template #loggedOut>
-  <div class="row col-sm-6" style="max-width:350px;">
+  <div class="row ">
+    <div class="text-center center">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <p class="hint-text">Sign in with your social media account</p>
       <div class="form-group social-btn clearfix">
@@ -39,5 +40,6 @@
       </div>
     </form>
     <hr />
+    </div>
   </div>
 </ng-template>

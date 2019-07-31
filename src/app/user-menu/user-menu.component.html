@@ -1,5 +1,11 @@
 <div *ngIf="info.token; else loggedOut">
-  <a href="#">Change password</a><br>
+  <!--<h5 class="text-primary">Your Information</h5>-->
+  <!--<p>-->
+    <!--<strong>Username:</strong> {{info.username}}<br/>-->
+    <!--<strong>Roles:</strong> {{info.authorities}}<br />-->
+    <!--<strong>Token:</strong> {{info.token}}.-->
+  <!--</p>-->
+  <a href="change-password">Change password</a><br>
   <a href="update-profile">Update Information</a><br>
   <button class="btn btn-secondary" (click)="logout()">Logout</button>
 </div>
