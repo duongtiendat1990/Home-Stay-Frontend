@@ -9,26 +9,29 @@ import {Router} from '@angular/router';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
- gmail:  SendGmail = new  SendGmail();
- submitted = false;
+  gmail: SendGmail = new SendGmail();
+  submitted = false;
+
   constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
   }
+
   newGmail(): void {
     this.submitted = false;
     this.gmail = new SendGmail();
   }
- sendGmail() {
-this.authService.forgotPassword(this.gmail.gmail).subscribe(data => {
-  console.log(data);
-  this.submitted = true;
-  this.router.navigate(['rest-password']);
-},
-  error => {
-  console.log(error);
-} );
- }
+
+  sendGmail() {
+    this.authService.forgotPassword(this.gmail.gmail).subscribe(data => {
+        console.log(data);
+        this.submitted = true;
+        this.router.navigate(['rest-password']);
+      },
+      error => {
+        console.log(error);
+      });
+  }
 }
 

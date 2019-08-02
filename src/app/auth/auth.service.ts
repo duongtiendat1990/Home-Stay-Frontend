@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
-import { JwtResponse } from './jwt-response';
-import { AuthLoginInfo } from './login-info';
+import {JwtResponse} from './jwt-response';
+import {AuthLoginInfo} from './login-info';
 import {ResetPassword} from './resetPassword';
+import {ChangePassword} from './changePassword';
 
 const httpOption = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +21,7 @@ export class AuthService {
   private  updateInfoUrl = 'http://localhost:8080/api/update-info';
   private forgotPasswordUrl = 'http://localhost:8080/api/auth/forgot-password';
   private resetPasswordUrl = 'http://localhost:8080/api/auth/reset-password';
+  private changePasswordUrl = 'http://localhost:8080/api/update-password';
 
 
   constructor(private http: HttpClient) {
@@ -39,10 +42,15 @@ export class AuthService {
   forgotPassword(gmail: string): Observable<any> {
     return this.http.post(this.forgotPasswordUrl, gmail);
   }
+
   restPassword(info: ResetPassword): Observable<any> {
-    return this.http.post<JwtResponse>(this.resetPasswordUrl, info , httpOption);
+    return this.http.post<JwtResponse>(this.resetPasswordUrl, info, httpOption);
   }
   updateInfo(info: FormData): Observable<JwtResponse> {
     return this.http.put<JwtResponse>(this.updateInfoUrl, info);
+  }
+  updatePassword(info: ChangePassword): Observable<JwtResponse> {
+  debugger;
+    return this.http.put<JwtResponse>(this.changePasswordUrl, info, httpOption);
   }
 }

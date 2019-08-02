@@ -10,6 +10,7 @@ import {HomeComponent} from './home/home.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {RestPasswordComponent} from './rest-password/rest-password.component';
 import {RegisterComponent} from './register/register.component';
+// import {ChangePasswordComponent} from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
     path: 'rest-password',
     component:  RestPasswordComponent
   },
+  // {
+  //   path: 'change-password',
+  //   component: ChangePasswordComponent
+  // },
   {
     path: '',
     redirectTo: 'home',
