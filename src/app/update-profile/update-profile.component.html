@@ -2,11 +2,12 @@
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm" novalidate>
     <div class="form-group">
       <label for="name">Your name</label>
-      <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" />
+      <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel"/>
     </div>
     <div class="form-group">
       <label for="birthday">Birthday</label>
-      <input type="date" class="form-control" name="birthday" [(ngModel)]="form.birthday" #birthday="ngModel" min="{{minDate}}" max="{{maxDate}}"/>
+      <input type="date" class="form-control" name="birthday" [(ngModel)]="form.birthday" #birthday="ngModel"
+             min="{{minDate}}" max="{{maxDate}}"/>
       <div *ngIf="f.submitted && birthday.invalid">
         <div *ngIf="birthday.errors.min">Please enter your real birthday</div>
         <div *ngIf="birthday.errors.max">You are not old enough</div>
@@ -15,12 +16,14 @@
     <div class="form-group">
       <div class="form-check">
         <label class="form-check-label" for="gender-male">
-          <input id="gender-male" type="radio" class="form-check-input" name="gender" ng-value="MALE" (change)="changeGender(false)" >Male
+          <input id="gender-male" type="radio" class="form-check-input" name="gender" ng-value="MALE"
+                 (change)="changeGender(false)">Male
         </label>
       </div>
       <div class="form-check">
         <label class="form-check-label" for="gender-female">
-          <input id="gender-female" type="radio" class="form-check-input" name="gender" ng-value="FEMALE" (change)="changeGender(true)">Female
+          <input id="gender-female" type="radio" class="form-check-input" name="gender" ng-value="FEMALE"
+                 (change)="changeGender(true)">Female
         </label>
       </div>
     </div>
@@ -31,14 +34,15 @@
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
       <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="form.phoneNumber" #phoneNumber="ngModel"
-             pattern="0([0-9]{9,10})" />
+             pattern="0([0-9]{9,10})"/>
       <div *ngIf="f.submitted && phoneNumber.invalid">
         <div *ngIf="phoneNumber.errors.pattern">Phone number is invalid</div>
       </div>
     </div>
     <div class="form-group">
       <label for="avatar">Avatar</label>
-      <input type="file" accept="image/*" class="form-control" name="avatar" [(ngModel)]="form.avatar" #avatar="ngModel" (change)="fileChange($event)" >
+      <input type="file" accept="image/*" class="form-control" name="avatar" [(ngModel)]="form.avatar" #avatar="ngModel"
+             (change)="fileChange($event)">
     </div>
     <div class="form-group">
       <button class="btn btn-primary">Update</button>

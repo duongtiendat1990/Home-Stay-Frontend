@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UpdateInfo} from '../auth/update-info';
 import {AuthService} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
@@ -22,6 +22,7 @@ export class UpdateProfileComponent implements OnInit {
   avatar: File;
   minDate: Date = new Date(new Date().getFullYear() - 90, new Date().getMonth(), new Date().getDate());
   maxDate: Date = new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
+
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
   }
 
@@ -32,6 +33,7 @@ export class UpdateProfileComponent implements OnInit {
     this.fileList = event.target.files;
     this.avatar = this.fileList[0];
   }
+
   changeGender(isFemale: boolean) {
     this.form.gender = (isFemale) ? Gender.FEMALE : Gender.MALE;
   }
@@ -63,10 +65,10 @@ export class UpdateProfileComponent implements OnInit {
   }
 }
 
-export function toFormData<T>( formValue: T ) {
+export function toFormData<T>(formValue: T) {
   const formData = new FormData();
 
-  for ( const key of Object.keys(formValue) ) {
+  for (const key of Object.keys(formValue)) {
     const value = formValue[key];
     formData.append(key, value);
   }
