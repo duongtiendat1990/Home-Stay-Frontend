@@ -7,6 +7,7 @@ import {AuthLoginInfo} from './login-info';
 import {ResetPassword} from './resetPassword';
 import {ChangePassword} from './changePassword';
 import {FormGroup} from '@angular/forms';
+import {House} from './house';
 
 const httpOption = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,6 +24,7 @@ export class AuthService {
   private forgotPasswordUrl = 'http://localhost:8080/api/auth/forgot-password';
   private resetPasswordUrl = 'http://localhost:8080/api/auth/reset-password';
   private changePasswordUrl = 'http://localhost:8080/api/update-password';
+  private createHouseUrl = 'http://localhost:8080/api/create-house';
 
 
   constructor(private http: HttpClient) {
@@ -53,7 +55,14 @@ export class AuthService {
   }
 
   updatePassword(info: ChangePassword): Observable<JwtResponse> {
-  debugger;
     return this.http.put<JwtResponse>(this.changePasswordUrl, info, httpOption);
+  }
+
+  createHouse(data: FormData): Observable<JwtResponse> {
+  debugger;
+
+    const jwtResponseObservable = this.http.post<JwtResponse>(this.createHouseUrl, data);
+    return jwtResponseObservable;
+
   }
 }

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {UserComponent} from './user/user.component';
@@ -10,6 +10,7 @@ import {HomeComponent} from './home/home.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {RestPasswordComponent} from './rest-password/rest-password.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
+import {CreateHouseComponent} from './create-house/create-house.component';
 
 const routes: Routes = [
   {
@@ -42,7 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'rest-password',
-    component:  RestPasswordComponent
+    component: RestPasswordComponent
   },
   {
     path: '',
@@ -52,11 +53,15 @@ const routes: Routes = [
   {
     path: 'change-password',
     component: ChangePasswordComponent
+  }, {
+    path: 'create-house',
+    component: CreateHouseComponent
   }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
