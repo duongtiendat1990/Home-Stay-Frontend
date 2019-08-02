@@ -3,7 +3,7 @@
 </div>
 
 <ng-template #loggedOut>
-  <div class="row col-sm-6" style="max-width:350px;">
+  <div class="row">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <p class="hint-text">Sign in with your social media account</p>
       <div class="form-group social-btn clearfix">
@@ -35,11 +35,9 @@
         </div>
       </div>
       <div class="form-footer">
-        <a href="#">Forgot Your password?</a>
+        <a href="forgot-password">Forgot password ?</a>
       </div>
     </form>
     <hr />
-    <!--<p>Don't have an account?</p>-->
-    <!--<a href="signup" class="btn btn-success">Sign Up</a>-->
   </div>
 </ng-template>

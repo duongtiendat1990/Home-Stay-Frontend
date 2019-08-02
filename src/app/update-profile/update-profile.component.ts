@@ -1,38 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-
+import {UpdateInfo} from '../auth/update-info';
 import {AuthService} from '../auth/auth.service';
-import {SignUpInfo} from '../auth/sign-up-info';
-import {HttpEvent, HttpEventType, HttpResponse} from '@angular/common/http';
-import {pipe} from 'rxjs';
-import {filter, map, tap} from 'rxjs/operators';
+import {TokenStorageService} from '../auth/token-storage.service';
 import {Gender} from '../auth/gender';
 
-export function uploadProgress<T>(cb: (progress: number) => void) {
-  return tap((event: HttpEvent<T>) => {
-    if (event.type === HttpEventType.UploadProgress) {
-      cb(Math.round((100 * event.loaded) / event.total));
-    }
-  });
-}
-
-export function toResponseBody<T>() {
-  return pipe(
-    filter((event: HttpEvent<T>) => event.type === HttpEventType.Response),
-    map((res: HttpResponse<T>) => res.body)
-  );
-}
-
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-update-profile',
+  templateUrl: './update-profile.component.html',
+  styleUrls: ['./update-profile.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class UpdateProfileComponent implements OnInit {
+
   form: any = {};
   progress = 0;
-  signupInfo: SignUpInfo;
-  isSignedUp = false;
-  isSignUpFailed = false;
+  updateInfo: UpdateInfo;
+  isUpdated = false;
+  isUpdateFailed = false;
   errorMessage = '';
   data: FormData = new FormData();
   fileList: FileList;
@@ -40,7 +23,7 @@ export class RegisterComponent implements OnInit {
   minDate: Date = new Date(new Date().getFullYear() - 90, new Date().getMonth(), new Date().getDate());
   maxDate: Date = new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -56,29 +39,27 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.signupInfo = new SignUpInfo(
+    this.updateInfo = new UpdateInfo(
       this.form.name,
-      this.form.username,
-      this.form.email,
       this.form.birthday,
       this.form.gender,
       this.form.address,
       this.form.phoneNumber,
-      this.form.password,
       this.avatar
     );
-    this.data = toFormData(this.signupInfo);
-    console.log(this.data);
-    this.authService.signUp(this.data).subscribe(
+    this.data = toFormData(this.updateInfo);
+    this.authService.updateInfo(this.data).subscribe(
       data => {
         console.log(data);
-        this.isSignedUp = true;
-        this.isSignUpFailed = false;
+        this.isUpdated = true;
+        this.isUpdateFailed = false;
+        this.tokenStorage.saveAvatarLink(data.avatarLink);
+        window.location.reload();
       },
       error => {
         console.log(error);
         this.errorMessage = error.error.message;
-        this.isSignUpFailed = true;
+        this.isUpdateFailed = true;
       }
     );
   }

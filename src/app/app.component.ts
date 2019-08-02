@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './auth/token-storage.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,7 @@ export class AppComponent implements OnInit {
   private roles: string[];
   private authority: string;
   private avatarLink: string;
-  constructor(private tokenStorage: TokenStorageService) { }
+  constructor(private tokenStorage: TokenStorageService, private router: Router ) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -30,4 +31,7 @@ export class AppComponent implements OnInit {
       });
     }
   }
+  // navigate(path: string){
+  //   this.router.navigate('path')
+  // }
 }
