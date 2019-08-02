@@ -14,7 +14,6 @@ export class UserMenuComponent implements OnInit {
 
   ngOnInit() {
     this.info = {
-      token: this.token.getToken(),
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };

@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
-import {FormControl, FormGroup} from '@angular/forms';
 import {SendGmail} from '../auth/sendGmail';
-import {SignUpInfo} from '../auth/signup-info';
-import {toFormData} from '../register/register.component';
 import {Router} from '@angular/router';
 
 @Component({

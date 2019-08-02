@@ -9,6 +9,7 @@ import {UpdateProfileComponent} from './update-profile/update-profile.component'
 import {HomeComponent} from './home/home.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {RestPasswordComponent} from './rest-password/rest-password.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'signup',
+    component: RegisterComponent,
   },
   {
     path: 'update-profile',
