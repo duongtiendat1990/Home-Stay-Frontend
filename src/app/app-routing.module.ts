@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {UserComponent} from './user/user.component';
@@ -10,7 +10,8 @@ import {HomeComponent} from './home/home.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {RestPasswordComponent} from './rest-password/rest-password.component';
 import {RegisterComponent} from './register/register.component';
-// import {ChangePasswordComponent} from './change-password/change-password.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
+import {PublishHouseComponent} from './publish-house/publish-house.component';
 
 const routes: Routes = [
   {
@@ -47,17 +48,21 @@ const routes: Routes = [
   },
   {
     path: 'rest-password',
-    component:  RestPasswordComponent
+    component: RestPasswordComponent
   },
-  // {
-  //   path: 'change-password',
-  //   component: ChangePasswordComponent
-  // },
+  {
+    path: 'publish-house',
+    component: PublishHouseComponent
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent
+  },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({

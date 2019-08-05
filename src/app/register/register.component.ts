@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../auth/auth.service';
-import {SignUpInfo} from '../auth/sign-up-info';
 import {HttpEvent, HttpEventType, HttpResponse} from '@angular/common/http';
 import {pipe} from 'rxjs';
 import {filter, map, tap} from 'rxjs/operators';
 import {Gender} from '../auth/gender';
+import {SignUpInfo} from '../auth/signup-info';
 
 export function uploadProgress<T>(cb: (progress: number) => void) {
   return tap((event: HttpEvent<T>) => {
@@ -68,7 +68,6 @@ export class RegisterComponent implements OnInit {
       this.avatar
     );
     this.data = toFormData(this.signupInfo);
-    console.log(this.data);
     this.authService.signUp(this.data).subscribe(
       data => {
         console.log(data);

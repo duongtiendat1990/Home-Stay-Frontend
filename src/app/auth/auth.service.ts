@@ -50,7 +50,8 @@ export class AuthService {
     return this.http.put<JwtResponse>(this.updateInfoUrl, info);
   }
   updatePassword(info: ChangePassword): Observable<JwtResponse> {
-  debugger;
     return this.http.put<JwtResponse>(this.changePasswordUrl, info, httpOption);
   }
+
+
 }
