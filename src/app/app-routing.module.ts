@@ -9,8 +9,9 @@ import {UpdateProfileComponent} from './update-profile/update-profile.component'
 import {HomeComponent} from './home/home.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {RestPasswordComponent} from './rest-password/rest-password.component';
+import {RegisterComponent} from './register/register.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
-import {CreateHouseComponent} from './create-house/create-house.component';
+import {PublishHouseComponent} from './publish-house/publish-house.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'signup',
+    component: RegisterComponent,
   },
   {
     path: 'update-profile',
@@ -51,11 +56,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'publish-house',
+    component: PublishHouseComponent
+  },
+  {
     path: 'change-password',
     component: ChangePasswordComponent
-  }, {
-    path: 'create-house',
-    component: CreateHouseComponent
   }
 ];
 

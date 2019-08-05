@@ -20,7 +20,7 @@ import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { CreateHouseComponent } from './create-house/create-house.component';
+import { PublishHouseComponent } from './publish-house/publish-house.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { CreateHouseComponent } from './create-house/create-house.component';
     RestPasswordComponent,
     UserMenuComponent,
     ChangePasswordComponent,
-    CreateHouseComponent
+    PublishHouseComponent
   ],
   imports: [
     BrowserModule,

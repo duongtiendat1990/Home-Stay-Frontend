@@ -64,7 +64,7 @@
     </div>
     <ul *ngIf="!authority" class="nav navbar-nav navbar-right ml-auto">
       <li class="nav-item">
-        <a data-toggle="dropdown">Login</a>
+        <a data-toggle="dropdown" class="nav-link dropdown-toggle">Login</a>
         <ul class="dropdown-menu form-wrapper">
           <li>
             <div class="container">
@@ -74,14 +74,7 @@
         </ul>
       </li>
       <li class="nav-item">
-        <a data-toggle="dropdown">Sign up</a>
-        <ul class="dropdown-menu form-wrapper">
-          <li>
-            <div class="container">
-              <app-register></app-register>
-            </div>
-          </li>
-        </ul>
+        <a routerLink="signup" class="btn btn-primary get-started-btn mt-1 mb-1">Sign up</a>
       </li>
     </ul>
   </div>
@@ -89,17 +82,11 @@
 
 <!-- Page Content -->
 <router-outlet></router-outlet>
-<footer class="py-5 bg-success" id="footer">
+<footer class="py-5 bg-success">
   <div class="container">
     <p class="m-0 text-center text-white">Villa Bastilicata Grande</p>
   </div>
 </footer>
 </body>
 </html>
-
-
-
-
-
-
 

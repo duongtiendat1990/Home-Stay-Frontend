@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../auth/auth.service';
-import {UpdateInfo} from '../auth/signup-info';
 import {HttpEvent, HttpEventType, HttpResponse} from '@angular/common/http';
 import {pipe} from 'rxjs';
 import {filter, map, tap} from 'rxjs/operators';
+import {Gender} from '../auth/gender';
+import {SignUpInfo} from '../auth/signup-info';
 
-export function uploadProgress<T>( cb: ( progress: number ) => void ) {
-  return tap(( event: HttpEvent<T> ) => {
-    if ( event.type === HttpEventType.UploadProgress ) {
+export function uploadProgress<T>(cb: (progress: number) => void) {
+  return tap((event: HttpEvent<T>) => {
+    if (event.type === HttpEventType.UploadProgress) {
       cb(Math.round((100 * event.loaded) / event.total));
     }
   });
@@ -16,10 +17,11 @@ export function uploadProgress<T>( cb: ( progress: number ) => void ) {
 
 export function toResponseBody<T>() {
   return pipe(
-    filter(( event: HttpEvent<T> ) => event.type === HttpEventType.Response),
-    map(( res: HttpResponse<T> ) => res.body)
+    filter((event: HttpEvent<T>) => event.type === HttpEventType.Response),
+    map((res: HttpResponse<T>) => res.body)
   );
 }
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,13 +30,16 @@ export function toResponseBody<T>() {
 export class RegisterComponent implements OnInit {
   form: any = {};
   progress = 0;
-  signupInfo: UpdateInfo;
+  signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
   data: FormData = new FormData();
   fileList: FileList;
   avatar: File;
+  minDate: Date = new Date(new Date().getFullYear() - 90, new Date().getMonth(), new Date().getDate());
+  maxDate: Date = new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
+
   constructor(private authService: AuthService) {
   }
 
@@ -45,15 +50,25 @@ export class RegisterComponent implements OnInit {
     this.fileList = event.target.files;
     this.avatar = this.fileList[0];
   }
+
+  changeGender(isFemale: boolean) {
+    this.form.gender = (isFemale) ? Gender.FEMALE : Gender.MALE;
+  }
+
   onSubmit() {
-    this.signupInfo = new UpdateInfo(
+    this.signupInfo = new SignUpInfo(
       this.form.name,
       this.form.username,
       this.form.email,
+      this.form.birthday,
+      this.form.gender,
+      this.form.address,
+      this.form.phoneNumber,
       this.form.password,
       this.avatar
-      );
+    );
     this.data = toFormData(this.signupInfo);
+    console.log(this.data);
     this.authService.signUp(this.data).subscribe(
       data => {
         console.log(data);
@@ -69,10 +84,10 @@ export class RegisterComponent implements OnInit {
   }
 }
 
-export function toFormData<T>( formValue: T ) {
+export function toFormData<T>(formValue: T) {
   const formData = new FormData();
 
-  for ( const key of Object.keys(formValue) ) {
+  for (const key of Object.keys(formValue)) {
     const value = formValue[key];
     formData.append(key, value);
   }
