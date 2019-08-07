@@ -21,6 +21,7 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PublishHouseComponent } from './publish-house/publish-house.component';
+import { HouseDetailComponent } from './house-detail/house-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PublishHouseComponent } from './publish-house/publish-house.component';
     RestPasswordComponent,
     UserMenuComponent,
     ChangePasswordComponent,
-    PublishHouseComponent
+    PublishHouseComponent,
+    HouseDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -12,15 +12,20 @@ import {RestPasswordComponent} from './rest-password/rest-password.component';
 import {RegisterComponent} from './register/register.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {PublishHouseComponent} from './publish-house/publish-house.component';
+import {HouseDetailComponent} from './house-detail/house-detail.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppComponent,
-  },
+  // {
+  //   path: '',
+  //   component: AppComponent,
+  // },
   {
     path: 'home',
     component: HomeComponent,
+    children: [
+      { path: 'house-detail',
+      component: HouseDetailComponent}
+    ]
   },
   {
     path: 'signup',
@@ -66,7 +71,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

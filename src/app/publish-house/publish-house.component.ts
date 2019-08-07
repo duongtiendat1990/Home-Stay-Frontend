@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth/auth.service';
 import {House} from '../model/house';
-import {HouseServiceService} from '../services/house-service.service';
+import {HouseService} from '../services/house.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -16,10 +15,9 @@ export class PublishHouseComponent implements OnInit {
   isPublished = false;
   errorMessage = '';
   info: FormData = new FormData();
-  fileList: FileList;
   images: File [] = [];
 
-  constructor(private authService: HouseServiceService) {
+  constructor(private authService: HouseService) {
   }
 
   ngOnInit() {
@@ -45,7 +43,7 @@ export class PublishHouseComponent implements OnInit {
     );
     this.info = toFormData(this.createHouse);
   debugger;
-    this.authService.createHouse(this.info).subscribe(
+    this.authService.publishHouse(this.info).subscribe(
       data => {
         console.log(data);
         this.isPublished = true;

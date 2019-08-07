@@ -82,12 +82,12 @@
                     </div>
                   </div>
                 </div>
-              <input type="submit" class="btnRegister" value="Create "/>
               <div *ngIf="f.submitted && !isPublished" class="alert alert-warning">
                 Creat house failed!<br/>{{errorMessage}}
               </div><div *ngIf="f.submitted && isPublished" class="alert alert-success">
                 Publish house successfully<br/>
               </div>
+              <input type="submit" class="btnRegister" value="Create "/>
             </form>
           </div>
         </div>
