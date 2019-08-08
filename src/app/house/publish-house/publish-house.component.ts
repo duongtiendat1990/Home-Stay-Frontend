@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth/auth.service';
-import {House} from '../model/house';
-import {HouseServiceService} from '../services/house-service.service';
+import {AuthService} from '../../auth/auth.service';
+import {House} from '../../model/house';
+import {HouseServiceService} from '../../services/house-service.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -16,13 +16,16 @@ export class PublishHouseComponent implements OnInit {
   isPublished = false;
   errorMessage = '';
   info: FormData = new FormData();
-  fileList: FileList;
   images: File [] = [];
+  listHouse: House[];
+  p: any;
+  isRented = false;
 
-  constructor(private authService: HouseServiceService) {
+  constructor(private houseService: HouseServiceService) {
   }
 
   ngOnInit() {
+    this.updateListHouse();
   }
 
   getFileDetail(e) {
@@ -36,16 +39,16 @@ export class PublishHouseComponent implements OnInit {
     this.createHouse = new House(
       this.form.name,
       this.form.address,
-      this.form.bathRooms,
       this.form.bedRooms,
+      this.form.bathRooms,
       this.form.pricePerNight,
+      this.isRented,
       this.form.category,
       this.form.description,
       this.images
     );
     this.info = toFormData(this.createHouse);
-  debugger;
-    this.authService.createHouse(this.info).subscribe(
+    this.houseService.createHouse(this.info).subscribe(
       data => {
         console.log(data);
         this.isPublished = true;
@@ -57,14 +60,20 @@ export class PublishHouseComponent implements OnInit {
       }
     );
   }
+
+  updateListHouse() {
+    this.houseService.getListHouseByUser()
+      .subscribe(next => this.listHouse = next, err => console.log(err));
+  }
+
+
 }
 
 export function toFormData<T>(formValue: T) {
   const formData = new FormData();
-debugger;
   for (const key of Object.keys(formValue)) {
     if (key === 'images') {
-      for (let i = 0; i < formValue[key].length ; i++) {
+      for (let i = 0; i < formValue[key].length; i++) {
         formData.append(key, formValue[key][i]);
       }
     } else {

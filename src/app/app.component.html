@@ -42,6 +42,8 @@
       </li>
       <li class="nav-item active"><a href="#" class="nav-link">Services</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
+
+
     </ul>
     <form class="navbar-form form-inline">
       <div class="input-group search-box">
@@ -49,7 +51,17 @@
         <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
       </div>
     </form>
+
     <div *ngIf="authority" class="nav navbar-nav navbar-right ml-auto">
+      <li class="nav-item dropdown">
+        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Menu <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="house" class="dropdown-item">Publish House</a></li>
+          <li><a href="houses" class="dropdown-item">List House By User</a></li>
+          <li><a href="#" class="dropdown-item">Le Marche</a></li>
+          <li><a href="#" class="dropdown-item">Villas</a></li>
+        </ul>
+      </li>
       <li class="nav-item">
         <img *ngIf="avatarLink" data-toggle="dropdown" class="btn btn-sq-xs dropdown-toggle" src={{avatarLink}} alt="">
         <img *ngIf="!avatarLink" data-toggle="dropdown" class="btn btn-sq-xs dropdown-toggle" src="http://fleischmen.com/wp-content/uploads/2017/11/user-avatar-placeholder.png" alt="">

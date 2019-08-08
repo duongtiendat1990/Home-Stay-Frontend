@@ -1,16 +1,17 @@
-export class House {
+export class UpdateInfoHouse {
   name: string;
   address: string;
   bedRooms: number;
   bathRooms: number;
   description: string;
   pricePerNight: number;
-  isRented: Boolean;
   category: string;
+  isRented: boolean;
   images: File [];
 
-  constructor( name: string, address: string, bedRooms: number, bathRooms: number, pricePerNight: number, isRented: Boolean,
-              category: string, description: string, images: File[]) {
+  constructor(name: string, address: string, bedRooms: number,
+              bathRooms: number, pricePerNight: number,
+              category: string, isRented: boolean, description: string, images: File[]) {
     this.name = name;
     this.address = address;
     this.bedRooms = bedRooms;

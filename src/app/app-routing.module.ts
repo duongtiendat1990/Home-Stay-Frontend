@@ -11,7 +11,10 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
 import {RestPasswordComponent} from './rest-password/rest-password.component';
 import {RegisterComponent} from './register/register.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
-import {PublishHouseComponent} from './publish-house/publish-house.component';
+import {PublishHouseComponent} from './house/publish-house/publish-house.component';
+import {EditHouseComponent} from './house/edit-house/edit-house.component';
+import {ListHouseByUserComponent} from './house/list-house-by-user/list-house-by-user.component';
+import {DetailHouseComponent} from './house/detail-house/detail-house.component';
 
 const routes: Routes = [
   {
@@ -51,7 +54,7 @@ const routes: Routes = [
     component: RestPasswordComponent
   },
   {
-    path: 'publish-house',
+    path: 'house',
     component: PublishHouseComponent
   },
   {
@@ -63,10 +66,24 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'house/edit/:name/:id',
+    component: EditHouseComponent
+  },
+  {
+    path: 'houses',
+    component: ListHouseByUserComponent
+  },
+  {
+    path: 'house/detail/:id',
+    component: DetailHouseComponent
+  }
+
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

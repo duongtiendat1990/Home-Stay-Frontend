@@ -13,7 +13,7 @@ const httpOption = {
 })
 export class HouseServiceService {
 
-  private createHouseUrl = 'http://localhost:8080/api/publish-house';
+  private readonly API_URL = 'http://localhost:8080/api/houses';
 
 
   constructor(private http: HttpClient) {
@@ -21,10 +21,27 @@ export class HouseServiceService {
 
 
   createHouse(data: FormData): Observable<HttpEvent<{}>> {
-    const req = new HttpRequest('POST', this.createHouseUrl, data, {
+    const req = new HttpRequest('POST', this.API_URL, data, {
       reportProgress: true,
       responseType: 'text'
     });
     return this.http.request(req);
+  }
+
+  getListHouseByUser(): Observable<any> {
+    return this.http.get<any>(this.API_URL + '/house');
+  }
+
+  deleteHouse(id: number): Observable<any> {
+    return this.http.delete(this.API_URL + '/' + id);
+  }
+
+  updateHouse(id: number, house: FormData): Observable<any> {
+    return this.http.put<any>(this.API_URL + '/' + id, house);
+  }
+
+  getHouse(id: number): Observable<any> {
+    return this.http.get<any>(this.API_URL + '/' + id);
+
   }
 }

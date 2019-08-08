@@ -20,7 +20,13 @@ import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { PublishHouseComponent } from './publish-house/publish-house.component';
+import { PublishHouseComponent } from './house/publish-house/publish-house.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { EditHouseComponent } from './house/edit-house/edit-house.component';
+import { ListHouseByUserComponent } from './house/list-house-by-user/list-house-by-user.component';
+import { DetailHouseComponent } from './house/detail-house/detail-house.component';
+import { BookHouseComponent } from './book-house/book-house.component';
 
 @NgModule({
   declarations: [
@@ -40,14 +46,20 @@ import { PublishHouseComponent } from './publish-house/publish-house.component';
     RestPasswordComponent,
     UserMenuComponent,
     ChangePasswordComponent,
-    PublishHouseComponent
+    PublishHouseComponent,
+    EditHouseComponent,
+    ListHouseByUserComponent,
+    DetailHouseComponent,
+    BookHouseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
