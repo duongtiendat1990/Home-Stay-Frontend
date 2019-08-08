@@ -1,4 +1,5 @@
 export class HouseInfo {
+  id: number;
   name: string;
   address: string;
   bedRooms: number;
@@ -8,8 +9,9 @@ export class HouseInfo {
   description: string;
   imagesSrc: string [];
 
-  constructor(name: string, address: string, bedRooms: number, bathRooms: number, pricePerNight: number, category: string,
+  constructor(id: number, name: string, address: string, bedRooms: number, bathRooms: number, pricePerNight: number, category: string,
               description: string, imagesSrc: string[]) {
+    this.id = id;
     this.name = name;
     this.address = address;
     this.bedRooms = bedRooms;

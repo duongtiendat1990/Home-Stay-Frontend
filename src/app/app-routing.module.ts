@@ -22,10 +22,14 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    children: [
-      { path: 'house-detail',
-      component: HouseDetailComponent}
-    ]
+    // children: [
+    //   { path: ':id',
+    //   component: HouseDetailComponent}
+    // ]
+  },
+  {
+    path: 'home/:id',
+    component: HouseDetailComponent,
   },
   {
     path: 'signup',

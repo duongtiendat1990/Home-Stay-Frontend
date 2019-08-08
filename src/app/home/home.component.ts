@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HouseInfo} from '../model/house-info';
 import {HouseService} from '../services/house.service';
 import {Observable, Subscription} from 'rxjs';
+import {MessageService} from '../services/message.service';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,17 @@ import {Observable, Subscription} from 'rxjs';
 export class HomeComponent implements OnInit {
   houses: Observable<HouseInfo[]>;
   subscription: Subscription;
-  constructor(private houseService: HouseService) { }
+
+  constructor(private houseService: HouseService, private messageService: MessageService) {
+  }
 
   ngOnInit() {
-    debugger;
     this.loadData();
+  }
+
+  sendHouseDetail(i: number) {
+    debugger;
+    this.messageService.sendMessage(this.houses[i]);
   }
 
   loadData() {
