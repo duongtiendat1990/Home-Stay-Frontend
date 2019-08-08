@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-
-import {AppComponent} from './app.component';
 import {UserComponent} from './user/user.component';
 import {PmComponent} from './pm/pm.component';
 import {AdminComponent} from './admin/admin.component';
@@ -15,17 +13,9 @@ import {PublishHouseComponent} from './publish-house/publish-house.component';
 import {HouseDetailComponent} from './house-detail/house-detail.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: AppComponent,
-  // },
   {
     path: 'home',
     component: HomeComponent,
-    // children: [
-    //   { path: ':id',
-    //   component: HouseDetailComponent}
-    // ]
   },
   {
     path: 'home/:id',

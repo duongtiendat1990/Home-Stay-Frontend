@@ -10,23 +10,17 @@ import {MessageService} from '../services/message.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  houses: Observable<HouseInfo[]>;
-  subscription: Subscription;
+  houses: HouseInfo[];
 
-  constructor(private houseService: HouseService, private messageService: MessageService) {
+  constructor(private houseService: HouseService) {
   }
 
   ngOnInit() {
     this.loadData();
   }
-
-  sendHouseDetail(i: number) {
-    debugger;
-    this.messageService.sendMessage(this.houses[i]);
-  }
-
   loadData() {
-    this.houses = this.houseService.getAllHouses();
-    debugger;
+    this.houseService.getAllHouses().subscribe(res => {
+      this.houses = res;
+    });
   }
 }

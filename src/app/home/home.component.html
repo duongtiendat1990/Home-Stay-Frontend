@@ -129,9 +129,9 @@
         </div>
       </div>
       <div class="row">
-        <div *ngFor="let house of houses | async; index as i" class="col-lg-4 col-md-6 mb-4">
+        <div *ngFor="let house of houses" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
-            <a [routerLink]="[house.id]" (click)="sendHouseDetail(i)"><img class="card-img-top" src="{{house.imagesSrc[0]}}"  height="200px" alt=""></a>
+            <a [routerLink]="['/home/' + house.id]"><img class="card-img-top" src="{{house.imagesSrc[0]}}"  height="200px" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">{{house.name}}</a>
