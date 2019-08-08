@@ -1,0 +1,32 @@
+<div id="housePhotos" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li *ngFor="let imgSrc of houseDetail.imagesSrc; index as i" data-target="#housePhotos" [attr.data-slide-to]="i"
+        [ngClass]="i===0?'active':''"></li>
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div *ngFor="let imgSrc of houseDetail.imagesSrc; index as i"
+         [ngClass]="i===0?'carousel-item active':'carousel-item'" style="height: 300px">
+      <img src="{{imgSrc}}" alt="House Photo">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#housePhotos" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#housePhotos" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+<div class="col-6">
+  <h3>{{houseDetail.name}}</h3>
+  <h4>{{houseDetail.category}}</h4>
+  <h5>{{houseDetail.address}}</h5>
+  <p>{{houseDetail.bedRooms}} Bed rooms</p><p>{{houseDetail.bathRooms}} Bath rooms</p><br>
+  <p>{{houseDetail.pricePerNight}} $/night</p><br>
+  <p>{{houseDetail.description}}</p>
+</div>
