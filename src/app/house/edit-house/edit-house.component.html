@@ -1,0 +1,143 @@
+<div class="container" class="border border-success">
+  <div id="signupbox" class="justify-content-center d-flex">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title" class="text-primary " >Edit House</h3>
+      </div>
+      <div class="panel-body">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm"
+              novalidate>
+          <div class="form-group required">
+            <label for="address" class="control-label col-md-4  requiredField"> Name<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+              <input class="input-md textlinput textInput form-control" type="text" class="form-control" name="name"
+                     placeholder="Name *"
+                     [(ngModel)]="form.name" #name="ngModel" required/>
+            </div>
+            <div *ngIf="f.submitted && name.invalid">
+              <div *ngIf="name.errors.required" class="alert alert-danger">Name is required</div>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label for="address" class="control-label col-md-4  requiredField"> Address<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+              <input class="input-md textlinput textInput form-control" type="text" class="form-control" name="address"
+                     placeholder="Address *"
+                     [(ngModel)]="form.address" #address="ngModel" required/>
+            </div>
+            <div *ngIf="f.submitted && address.invalid">
+              <div *ngIf="address.errors.required" class="alert alert-danger">Address is required</div>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label for="bedRooms" class="control-label col-md-4  requiredField">BedRooms<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+              <input class="input-md textinput textInput form-control"  type="number"
+                     class="form-control" placeholder="BedRoom *" name="bedRooms"
+                     [(ngModel)]="form.bedRooms" #bedRooms="ngModel" required/>
+            </div>
+            <div *ngIf="f.submitted && bedRooms.invalid">
+              <div *ngIf="bedRooms.errors.required" class="alert alert-danger">BedRoom is required</div>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label for="bathRooms" class="control-label col-md-4  requiredField">BathRooms<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+              <input class="input-md textinput textInput form-control" style="margin-bottom: 10px" type="number"
+                     class="form-control" placeholder="bathRooms *" name="bathRooms"
+                     [(ngModel)]="form.bathRooms" #bathRooms="ngModel" required/>
+            </div>
+            <div *ngIf="f.submitted && bathRooms.invalid">
+              <div *ngIf="bathRooms.errors.required" class="alert alert-danger">BathRooms is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bathRooms" class="control-label col-md-4  requiredField">Images<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+
+            <input type="file" accept="image/*"  class="form-control" name="images"
+                   [(ngModel)]="form.images"
+                   #images="ngModel" (change)="getFileDetail($event)" multiple required style="margin-bottom: 10px">
+            </div>
+            <div *ngIf="f.submitted && images.invalid">
+              <div *ngIf="images.errors.required" class="alert alert-danger">Image is required</div>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label for="category" class="control-label col-md-4  requiredField">Category<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+
+            <select class="form-control" name="category" [(ngModel)]="form.category" #category="ngModel"
+                    required>
+              <option class="form-control" class="hidden" selected disabled>Please select House
+                Category
+              </option>
+              <option value="Apartment">Apartment</option>
+              <option value="VILLA">VILLA</option>
+              <option value="NEARBY VILLA">NEARBY VILLA</option>
+            </select>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label for="isRented" class="control-label col-md-4  requiredField">Status<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+
+            <select class="form-control" name="isRented" [(ngModel)]="form.isRented" #isRented="ngModel"
+                    required>
+              <option class="form-control" class="hidden" selected disabled>Please select House
+                Status
+              </option>
+              <option [ngValue]="true">hired</option>
+              <option [ngValue]="false">without tax</option>
+            </select>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label for="pricePerNight" class="control-label col-md-4  requiredField">Price PerNight<span
+              class="asteriskField">*</span> </label>
+            <div class="controls col-md-8 ">
+              <input class="input-md textinput textInput form-control" style="margin-bottom: 10px" type="text"
+                     class="form-control" placeholder="Price PerNight* *" name="pricePerNight"
+                     [(ngModel)]="form.pricePerNight" #pricePerNight="ngModel" required min="0"/>
+            </div>
+            <div *ngIf="f.submitted && pricePerNight.invalid">
+              <div *ngIf="pricePerNight.errors.required" class="alert alert-danger">PriceNight is required</div>
+            </div>
+          </div>
+          <div id="div_id_catagory" class="form-group required">
+            <label for="pricePerNight" class="control-label col-md-4  requiredField">Description<span
+              class="asteriskField">*</span> </label>
+            <textarea name="description" cols="60" rows="5" placeholder="Description"
+                      [(ngModel)]="form.description" #description="ngModel" required></textarea>
+            <div *ngIf="f.submitted && description.invalid">
+              <div *ngIf="description.errors.required" class="alert alert-danger">Description is required</div>
+            </div>
+          </div>
+          <div class="aab controls col-md-4 "></div>
+          <input type="submit" class="btnRegister" value="Edit House " class="btn btn-primary btn btn-info"/>
+          <div *ngIf="f.submitted && !isUpdateHouse" class="alert alert-warning">
+            Update house failed!<br/>{{errorMessage}}
+          </div>
+          <div *ngIf="f.submitted && isUpdateHouse" class="alert alert-success">
+            Update house successfully<br/>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

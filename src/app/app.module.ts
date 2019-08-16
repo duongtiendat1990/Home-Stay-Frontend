@@ -20,9 +20,17 @@ import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { PublishHouseComponent } from './publish-house/publish-house.component';
-import { HouseDetailComponent } from './house-detail/house-detail.component';
 import { HouseFilterPipe } from './house-filter.pipe';
+import { PublishHouseComponent } from './house/publish-house/publish-house.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { EditHouseComponent } from './house/edit-house/edit-house.component';
+import { ListHouseByUserComponent } from './house/list-house-by-user/list-house-by-user.component';
+import { HouseDetailComponent } from './house/house-detail/house-detail.component';
+import { ViewHouseComponent } from './house/view-house/view-house.component';
+import { HistoryBookingComponent } from './book/history-booking/history-booking.component';
+import { HostManagementComponent } from './host-management/host-management.component';
+import { RentScheduleComponent } from './house/rent-schedule/rent-schedule.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +51,13 @@ import { HouseFilterPipe } from './house-filter.pipe';
     UserMenuComponent,
     ChangePasswordComponent,
     PublishHouseComponent,
+    EditHouseComponent,
+    ListHouseByUserComponent,
+    HouseDetailComponent,
+    ViewHouseComponent,
+    HistoryBookingComponent,
+    HostManagementComponent,
+    RentScheduleComponent,
     HouseDetailComponent,
     HouseFilterPipe
   ],
@@ -51,7 +66,9 @@ import { HouseFilterPipe } from './house-filter.pipe';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

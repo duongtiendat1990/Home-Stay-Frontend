@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
-        console.log(data);
+        this.router.navigate(['home']);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.authorities);
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       error => {
-        console.log(error);
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       }

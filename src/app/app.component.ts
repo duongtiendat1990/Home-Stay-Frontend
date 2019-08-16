@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HouseCriteria} from './model/house-criteria';
 import {HouseService} from './services/house.service';
 import {MessageService} from './services/message.service';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -38,6 +38,10 @@ export class AppComponent implements OnInit {
         return true;
       });
     }
+    $('.dropdown-menu').click(function(e) {
+      console.log(e);
+      e.stopPropagation();
+    });
   }
 
   search() {
@@ -61,10 +65,10 @@ export class AppComponent implements OnInit {
       }
     });
     this.houseService.searchHouse(queryString).subscribe(data => {
+      console.log(data);
       this.messageService.sendMessage(data);
     });
   }
-
   // navigate(path: string){
   //   this.router.navigate('path')
   // }

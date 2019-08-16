@@ -1,0 +1,28 @@
+<div class="container" style="margin-top: 20px; font-family: 'Abyssinica SIL' ">
+  <h2 class="product-title text-center">History Book House</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Checkin Date</th>
+      <th scope="col">Checkout Date</th>
+      <th scope="col">Book Date</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="bookHouse">
+    <tr >
+      <td>{{bookHouse.user.name}}</td>
+      <td>{{bookHouse.user.email}}</td>
+      <td>{{bookHouse.user.phoneNumber}}</td>
+      <td>{{bookHouse.checkinDate| date}}</td>
+      <td>{{bookHouse.checkoutDate| date}}</td>
+      <td>{{bookHouse.bookDate | date}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ul class="pagination">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </ul>
+</div>

@@ -38,4 +38,20 @@ export class HouseService {
   getHouseInfoById(id: number): Observable<any> {
     return this.http.get(this.guestResource + '/houses' + '/' + id);
   }
+  getListHouseByUser(): Observable<any> {
+    return this.http.get<any>(this.ownerResource + '/house');
+  }
+
+  deleteHouse(id: number): Observable<any> {
+    return this.http.delete(this.ownerResource + '/' + id);
+  }
+
+  updateHouse(id: number, house: FormData): Observable<any> {
+    return this.http.put<any>(this.ownerResource + '/' + id, house);
+  }
+
+  getHouse(id: number): Observable<any> {
+    return this.http.get<any>(this.ownerResource + '/' + id);
+
+  }
 }

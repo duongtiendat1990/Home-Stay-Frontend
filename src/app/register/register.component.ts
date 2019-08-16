@@ -6,6 +6,7 @@ import {pipe} from 'rxjs';
 import {filter, map, tap} from 'rxjs/operators';
 import {Gender} from '../auth/gender';
 import {SignUpInfo} from '../auth/signup-info';
+import {Router} from '@angular/router';
 
 export function uploadProgress<T>(cb: (progress: number) => void) {
   return tap((event: HttpEvent<T>) => {

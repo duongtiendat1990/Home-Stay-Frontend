@@ -1,7 +1,6 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {HouseInfo} from '../model/house-info';
 import {HouseService} from '../services/house.service';
-import {} from 'ang';
 import {HouseCriteria} from '../model/house-criteria';
 import {Subscription} from 'rxjs';
 import {MessageService} from '../services/message.service';
@@ -17,7 +16,6 @@ export class HomeComponent implements OnInit, OnChanges {
   subscription: Subscription;
 
   constructor(private houseService: HouseService, private messageService: MessageService) {
-    this.loadData();
     this.subscription = this.messageService.getMessage().subscribe(data => {
       if (data) {
         this.houses = data;
@@ -26,6 +24,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.loadData();
   }
 
   loadData() {

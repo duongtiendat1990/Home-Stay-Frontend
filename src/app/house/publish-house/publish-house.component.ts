@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {House} from '../model/house';
-import {HouseService} from '../services/house.service';
-import {HttpClient} from '@angular/common/http';
+import {HouseService} from '../../services/house.service';
+import {House} from '../../model/house';
 
 @Component({
   selector: 'app-publish-house',
@@ -42,7 +41,6 @@ export class PublishHouseComponent implements OnInit {
       this.images
     );
     this.info = toFormData(this.createHouse);
-  debugger;
     this.authService.publishHouse(this.info).subscribe(
       data => {
         console.log(data);
@@ -59,10 +57,9 @@ export class PublishHouseComponent implements OnInit {
 
 export function toFormData<T>(formValue: T) {
   const formData = new FormData();
-debugger;
   for (const key of Object.keys(formValue)) {
     if (key === 'images') {
-      for (let i = 0; i < formValue[key].length ; i++) {
+      for (let i = 0; i < formValue[key].length; i++) {
         formData.append(key, formValue[key][i]);
       }
     } else {
@@ -72,5 +69,4 @@ debugger;
   }
 
   return formData;
-
 }

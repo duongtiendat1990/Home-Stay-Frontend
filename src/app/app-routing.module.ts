@@ -9,8 +9,15 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
 import {RestPasswordComponent} from './rest-password/rest-password.component';
 import {RegisterComponent} from './register/register.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
-import {PublishHouseComponent} from './publish-house/publish-house.component';
-import {HouseDetailComponent} from './house-detail/house-detail.component';
+import {PublishHouseComponent} from './house/publish-house/publish-house.component';
+import {EditHouseComponent} from './house/edit-house/edit-house.component';
+import {ListHouseByUserComponent} from './house/list-house-by-user/list-house-by-user.component';
+import {HouseDetailComponent} from './house/house-detail/house-detail.component';
+import {ViewHouseComponent} from './house/view-house/view-house.component';
+import {LoginComponent} from './login/login.component';
+import {HistoryBookingComponent} from './book/history-booking/history-booking.component';
+import {HostManagementComponent} from './host-management/host-management.component';
+import {RentScheduleComponent} from './house/rent-schedule/rent-schedule.component';
 
 const routes: Routes = [
   {
@@ -50,23 +57,55 @@ const routes: Routes = [
     component: RestPasswordComponent
   },
   {
-    path: 'publish-house',
-    component: PublishHouseComponent
-  },
-  {
     path: 'change-password',
     component: ChangePasswordComponent
+  },
+  {
+    path: 'home/:id',
+    component: HouseDetailComponent
+  },
+  {
+    path: 'houses/:id',
+    component: ViewHouseComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'history',
+    component: HistoryBookingComponent
+  },
+  {
+    path: 'host-management',
+    component: HostManagementComponent,
+    children: [
+      {
+        path: 'house',
+        component: PublishHouseComponent,
+      }, {
+        path: 'houses',
+        component: ListHouseByUserComponent
+      },
+      {
+        path: 'edit/:name/:id',
+        component: EditHouseComponent
+      },
+      {
+        path: 'houses/:name',
+        component: RentScheduleComponent
+      }
+    ]
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
