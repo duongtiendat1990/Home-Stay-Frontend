@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PublishHouseComponent } from './publish-house/publish-house.component';
 import { HouseDetailComponent } from './house-detail/house-detail.component';
+import { HouseFilterPipe } from './house-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HouseDetailComponent } from './house-detail/house-detail.component';
     UserMenuComponent,
     ChangePasswordComponent,
     PublishHouseComponent,
-    HouseDetailComponent
+    HouseDetailComponent,
+    HouseFilterPipe
   ],
   imports: [
     BrowserModule,

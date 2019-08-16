@@ -9,7 +9,7 @@ import {HouseService} from '../services/house.service';
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent implements OnInit {
-  houseDetail: HouseInfo;
+  houseDetail: HouseInfo = new HouseInfo();
   errorMessage: string;
 
   constructor(private route: ActivatedRoute, private houseService: HouseService) {

@@ -12,8 +12,8 @@ const httpOption = {
 })
 export class HouseService {
 
-  private ownerResource = 'http://localhost:8080/api/owner';
-  private guestResource = 'http://localhost:8080/api/guest';
+  private ownerResource = '/api/owner';
+  private guestResource = '/api/guest';
 
   constructor(private http: HttpClient) {
   }
@@ -29,6 +29,10 @@ export class HouseService {
 
   getAllHouses(): Observable<any> {
     return this.http.get(this.guestResource + '/houses', httpOption);
+  }
+
+  searchHouse(queryString: string): Observable<any> {
+    return this.http.get(this.guestResource + '/houses/search?' + queryString, httpOption);
   }
 
   getHouseInfoById(id: number): Observable<any> {

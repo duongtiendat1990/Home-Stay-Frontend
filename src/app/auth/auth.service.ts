@@ -16,12 +16,12 @@ const httpOption = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
-  private  updateInfoUrl = 'http://localhost:8080/api/update-info';
-  private forgotPasswordUrl = 'http://localhost:8080/api/auth/forgot-password';
-  private resetPasswordUrl = 'http://localhost:8080/api/auth/reset-password';
-  private changePasswordUrl = 'http://localhost:8080/api/update-password';
+  private loginUrl = '/api/auth/signin';
+  private signupUrl = '/api/auth/signup';
+  private updateInfoUrl = '/api/update-info';
+  private forgotPasswordUrl = '/api/auth/forgot-password';
+  private resetPasswordUrl = '/api/auth/reset-password';
+  private changePasswordUrl = '/api/update-password';
 
 
   constructor(private http: HttpClient) {
@@ -31,12 +31,12 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOption);
   }
 
-  signUp(info: FormData): Observable<HttpEvent<{}>> {
-    const req = new HttpRequest('POST', this.signupUrl, info, {
-      reportProgress: true,
-      responseType: 'text'
-    });
-    return this.http.request(req);
+  signUp(info: FormData): Observable<any> {
+    // const req = new HttpRequest('POST', this.signupUrl, info, {
+    //   reportProgress: true,
+    //   responseType: 'text'
+    // });
+    return this.http.post(this.signupUrl, info);
   }
 
   forgotPassword(gmail: string): Observable<any> {
@@ -46,9 +46,11 @@ export class AuthService {
   restPassword(info: ResetPassword): Observable<any> {
     return this.http.post<JwtResponse>(this.resetPasswordUrl, info, httpOption);
   }
+
   updateInfo(info: FormData): Observable<JwtResponse> {
     return this.http.put<JwtResponse>(this.updateInfoUrl, info);
   }
+
   updatePassword(info: ChangePassword): Observable<JwtResponse> {
     return this.http.put<JwtResponse>(this.changePasswordUrl, info, httpOption);
   }

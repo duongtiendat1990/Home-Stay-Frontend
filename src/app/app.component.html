@@ -10,6 +10,7 @@
 
   <title>Shop Homepage - Start Bootstrap Template</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 
@@ -27,7 +28,7 @@
     </button>
   </div>
   <!-- Collection of nav links, forms, and other content for toggling -->
-  <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+  <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start position-static">
     <ul class="nav navbar-nav">
       <li class="nav-item"><a routerLink="home" class="nav-link">Home</a></li>
       <li class="nav-item"><a href="#" class="nav-link">About</a></li>
@@ -43,10 +44,31 @@
       <li class="nav-item active"><a href="#" class="nav-link">Services</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
     </ul>
-    <form class="navbar-form form-inline">
-      <div class="input-group search-box">
-        <input type="text" id="search" class="form-control" placeholder="Search here...">
-        <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+    <form class="navbar-form form-inline position-static" (ngSubmit)="search()">
+      <div class="input-group search-box position-static">
+        <input type="text" id="search" [(ngModel)]="criteria.address" class="form-control" placeholder="Search here..." [ngModelOptions]="{standalone: true}">
+        <div class="btn-group position-static">
+          <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span> Search</button>
+          <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split position-static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu w-100">
+            <input type="text" placeholder="House Name" class="col-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="criteria.name" #name>
+            <input type="text" placeholder="Address" class="col-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="criteria.address" #address>
+            <input type="text" placeholder="Category" class="col-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="criteria.category" #category>
+            <input type="number" placeholder="Bed Rooms" class="col-1" [ngModelOptions]="{standalone: true}" [(ngModel)]="criteria.bedRooms" min="0" #bedRooms>
+            <input type="number" placeholder="Bath Rooms" class="col-1" [ngModelOptions]="{standalone: true}" [(ngModel)]="criteria.bathRooms" min="0" #bathRooms>
+            <input type="number" placeholder="Min Price" class="col-1" [ngModelOptions]="{standalone: true}" [(ngModel)]="criteria.minPrice" min="0" #minPrice>
+            <input type="number" placeholder="Max Price" class="col-1" [ngModelOptions]="{standalone: true}" [(ngModel)]="criteria.maxPrice" min= "{{minPrice.value}}" #maxPrice>
+            <select id="" [(ngModel)]="criteria.status" class="col-2" [ngModelOptions]="{standalone: true}" #status>
+              <option value="">-Select status-</option>
+              <option value="BOOKED">Booked</option>
+              <option value="CHECKED_OUT">Checked out</option>
+              <option value="CHECKED_IN">Checked in</option>
+              <option value="AVAILABLE">Available</option>
+            </select>
+          </div>
+        </div>
       </div>
     </form>
     <div *ngIf="authority" class="nav navbar-nav navbar-right ml-auto">
@@ -87,6 +109,12 @@
     <p class="m-0 text-center text-white">Villa Bastilicata Grande</p>
   </div>
 </footer>
+<script>
+  $('.dropdown-menu').click(function(e) {
+    console.log(e);
+    e.stopPropagation();
+  });
+</script>
 </body>
 </html>
 

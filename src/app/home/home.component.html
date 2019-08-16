@@ -29,7 +29,22 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-
+      <div class="row" *ngIf="criteria">
+        <input type="text" placeholder="House Name" class="col-2" [(ngModel)]="criteria.name" #name>
+        <input type="text" placeholder="Address" class="col-2" [(ngModel)]="criteria.address" #address>
+        <input type="text" placeholder="Category" class="col-2" [(ngModel)]="criteria.category" #category>
+        <input type="number" placeholder="Bed Rooms" class="col-1" [(ngModel)]="criteria.bedRooms" min="0" #bedRooms>
+        <input type="number" placeholder="Bath Rooms" class="col-1" [(ngModel)]="criteria.bathRooms" min="0" #bathRooms>
+        <input type="number" placeholder="Min Price" class="col-1" [(ngModel)]="criteria.minPrice" min="0" #minPrice>
+        <input type="number" placeholder="Max Price" class="col-1" [(ngModel)]="criteria.maxPrice" min= "{{minPrice.value}}" #maxPrice>
+        <select name="" id="" [(ngModel)]="criteria.status" #status>
+          <option value="">-Select status-</option>
+          <option value="BOOKED">Booked</option>
+          <option value="CHECKED_OUT">Checked out</option>
+          <option value="CHECKED_IN">Checked in</option>
+          <option value="AVAILABLE">Available</option>
+        </select>
+      </div>
       <div class="row">
 
         <div class="col-lg-4 col-md-6 mb-4">
@@ -129,7 +144,8 @@
         </div>
       </div>
       <div class="row">
-        <div *ngFor="let house of houses" class="col-lg-4 col-md-6 mb-4">
+        <div *ngFor="let house of houses | houseFilter:{name: criteria.name, address: criteria.address, bedRooms: criteria.bathRooms,
+        bathRooms: criteria.bathRooms, category: criteria.category, minPrice: criteria.minPrice, maxPrice: criteria.maxPrice, status: criteria.status}" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
             <a [routerLink]="['/home/' + house.id]"><img class="card-img-top" src="{{house.imagesSrc[0]}}"  height="200px" alt=""></a>
             <div class="card-body">
