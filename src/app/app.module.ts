@@ -25,8 +25,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { EditHouseComponent } from './house/edit-house/edit-house.component';
 import { ListHouseByUserComponent } from './house/list-house-by-user/list-house-by-user.component';
-import { DetailHouseComponent } from './house/detail-house/detail-house.component';
-import { BookHouseComponent } from './book-house/book-house.component';
+import { HouseDetailComponent } from './house/house-detail/house-detail.component';
+import { ViewHouseComponent } from './house/view-house/view-house.component';
+import { HistoryBookingComponent } from './book/history-booking/history-booking.component';
+import { HostManagementComponent } from './host-management/host-management.component';
+import { RentScheduleComponent } from './house/rent-schedule/rent-schedule.component';
 
 @NgModule({
   declarations: [
@@ -49,8 +52,11 @@ import { BookHouseComponent } from './book-house/book-house.component';
     PublishHouseComponent,
     EditHouseComponent,
     ListHouseByUserComponent,
-    DetailHouseComponent,
-    BookHouseComponent
+    HouseDetailComponent,
+    ViewHouseComponent,
+    HistoryBookingComponent,
+    HostManagementComponent,
+    RentScheduleComponent
   ],
   imports: [
     BrowserModule,

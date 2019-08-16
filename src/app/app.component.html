@@ -54,12 +54,10 @@
 
     <div *ngIf="authority" class="nav navbar-nav navbar-right ml-auto">
       <li class="nav-item dropdown">
-        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Menu <b class="caret"></b></a>
+        <a   href="host-management">Host Management<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="house" class="dropdown-item">Publish House</a></li>
+          <li><a href="host-management" class="dropdown-item">HostManagement</a></li>
           <li><a href="houses" class="dropdown-item">List House By User</a></li>
-          <li><a href="#" class="dropdown-item">Le Marche</a></li>
-          <li><a href="#" class="dropdown-item">Villas</a></li>
         </ul>
       </li>
       <li class="nav-item">
@@ -93,8 +91,10 @@
 </nav>
 
 <!-- Page Content -->
-<router-outlet></router-outlet>
-<footer class="py-5 bg-success">
+
+  <router-outlet ></router-outlet>
+
+<footer   class="py-5 bg-success">
   <div class="container">
     <p class="m-0 text-center text-white">Villa Bastilicata Grande</p>
   </div>

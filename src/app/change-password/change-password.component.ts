@@ -34,7 +34,6 @@ export class ChangePasswordComponent implements OnInit {
       this.form.currentPassword,
       this.form.newPassword
     );
-
     this.authService.updatePassword(this.updatePassWord).subscribe(
       data => {
         console.log(data);

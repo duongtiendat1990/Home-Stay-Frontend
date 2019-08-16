@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../auth/auth.service';
+import {HouseService} from '../../services/house-service';
 import {House} from '../../model/house';
-import {HouseServiceService} from '../../services/house-service.service';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-publish-house',
@@ -16,16 +14,13 @@ export class PublishHouseComponent implements OnInit {
   isPublished = false;
   errorMessage = '';
   info: FormData = new FormData();
+  fileList: FileList;
   images: File [] = [];
-  listHouse: House[];
-  p: any;
-  isRented = false;
 
-  constructor(private houseService: HouseServiceService) {
+  constructor(private authService: HouseService) {
   }
 
   ngOnInit() {
-    this.updateListHouse();
   }
 
   getFileDetail(e) {
@@ -39,16 +34,15 @@ export class PublishHouseComponent implements OnInit {
     this.createHouse = new House(
       this.form.name,
       this.form.address,
-      this.form.bedRooms,
       this.form.bathRooms,
+      this.form.bedRooms,
       this.form.pricePerNight,
-      this.isRented,
       this.form.category,
       this.form.description,
       this.images
     );
     this.info = toFormData(this.createHouse);
-    this.houseService.createHouse(this.info).subscribe(
+    this.authService.createHouse(this.info).subscribe(
       data => {
         console.log(data);
         this.isPublished = true;
@@ -60,13 +54,6 @@ export class PublishHouseComponent implements OnInit {
       }
     );
   }
-
-  updateListHouse() {
-    this.houseService.getListHouseByUser()
-      .subscribe(next => this.listHouse = next, err => console.log(err));
-  }
-
-
 }
 
 export function toFormData<T>(formValue: T) {
@@ -83,5 +70,4 @@ export function toFormData<T>(formValue: T) {
   }
 
   return formData;
-
 }

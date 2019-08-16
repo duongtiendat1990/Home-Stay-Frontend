@@ -6,6 +6,7 @@ import {pipe} from 'rxjs';
 import {filter, map, tap} from 'rxjs/operators';
 import {Gender} from '../auth/gender';
 import {SignUpInfo} from '../auth/signup-info';
+import {Router} from '@angular/router';
 
 export function uploadProgress<T>(cb: (progress: number) => void) {
   return tap((event: HttpEvent<T>) => {
@@ -56,6 +57,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+  debugger;
     this.signupInfo = new SignUpInfo(
       this.form.name,
       this.form.username,
@@ -73,6 +75,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+
       },
       error => {
         console.log(error);

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {House} from '../../model/house';
-import {HouseServiceService} from '../../services/house-service.service';
+import {HouseService} from '../../services/house-service';
 import {ActivatedRoute, Route} from '@angular/router';
 import {UpdateInfoHouse} from '../../model/update_info_house';
 
@@ -22,7 +22,7 @@ export class EditHouseComponent implements OnInit {
   isRented = false;
   houseCurrents;
 
-  constructor(private houseService: HouseServiceService, private route: ActivatedRoute) {
+  constructor(private houseService: HouseService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {

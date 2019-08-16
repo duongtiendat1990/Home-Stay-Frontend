@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HouseServiceService} from '../../services/house-service.service';
+import {HouseService} from '../../services/house-service';
 import {House} from '../../model/house';
 
 @Component({
@@ -13,7 +13,7 @@ export class ListHouseByUserComponent implements OnInit {
   p: any;
 
 
-  constructor(private  houseService: HouseServiceService) {
+  constructor(private  houseService: HouseService) {
   }
 
   ngOnInit() {
@@ -21,10 +21,8 @@ export class ListHouseByUserComponent implements OnInit {
   }
 
   updateListHouse() {
-    debugger;
     this.houseService.getListHouseByUser()
       .subscribe(next => this.listHouse = next, err => console.log(err));
-    debugger;
   }
 
   deleteHouse(id: number) {

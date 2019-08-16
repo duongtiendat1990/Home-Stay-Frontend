@@ -14,7 +14,12 @@ import {ChangePasswordComponent} from './change-password/change-password.compone
 import {PublishHouseComponent} from './house/publish-house/publish-house.component';
 import {EditHouseComponent} from './house/edit-house/edit-house.component';
 import {ListHouseByUserComponent} from './house/list-house-by-user/list-house-by-user.component';
-import {DetailHouseComponent} from './house/detail-house/detail-house.component';
+import {HouseDetailComponent} from './house/house-detail/house-detail.component';
+import {ViewHouseComponent} from './house/view-house/view-house.component';
+import {LoginComponent} from './login/login.component';
+import {HistoryBookingComponent} from './book/history-booking/history-booking.component';
+import {HostManagementComponent} from './host-management/host-management.component';
+import {RentScheduleComponent} from './house/rent-schedule/rent-schedule.component';
 
 const routes: Routes = [
   {
@@ -54,29 +59,50 @@ const routes: Routes = [
     component: RestPasswordComponent
   },
   {
-    path: 'house',
-    component: PublishHouseComponent
-  },
-  {
     path: 'change-password',
     component: ChangePasswordComponent
+  },
+  {
+    path: 'home/:id',
+    component: HouseDetailComponent
+  },
+  {
+    path: 'houses/:id',
+    component: ViewHouseComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'history',
+    component: HistoryBookingComponent
+  },
+  {
+    path: 'host-management',
+    component: HostManagementComponent,
+    children: [
+      {
+        path: 'house',
+        component: PublishHouseComponent,
+      }, {
+        path: 'houses',
+        component: ListHouseByUserComponent
+      },
+      {
+        path: 'edit/:name/:id',
+        component: EditHouseComponent
+      },
+      {
+        path: 'houses/:name',
+        component: RentScheduleComponent
+      }
+    ]
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: 'house/edit/:name/:id',
-    component: EditHouseComponent
-  },
-  {
-    path: 'houses',
-    component: ListHouseByUserComponent
-  },
-  {
-    path: 'house/detail/:id',
-    component: DetailHouseComponent
   }
 
 ];
