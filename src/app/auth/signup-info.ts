@@ -8,10 +8,10 @@ export class SignUpInfo {
   address: string;
   phoneNumber: string;
   password: string;
-  avatar: File;
+  avatarUrl: string;
 
   constructor(name: string, username: string, email: string, birthday: Date, gender: Gender,
-              address: string, phoneNumber: string, password: string, avatar: File) {
+              address: string, phoneNumber: string, password: string, avatarUrl: string) {
     this.name = name;
     this.username = username;
     this.email = email;
@@ -20,6 +20,6 @@ export class SignUpInfo {
     this.address = address;
     this.phoneNumber = phoneNumber;
     this.password = password;
-    this.avatar = avatar;
+    this.avatarUrl = avatarUrl;
   }
 }

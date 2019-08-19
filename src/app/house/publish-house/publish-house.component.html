@@ -1,8 +1,8 @@
-<div class="container" class="border border-success">
+<div class="container border border-success">
   <div id="signupbox" class="justify-content-center d-flex" >
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h2 class="panel-title" class="text-info">Publish House</h2>
+        <h2 class="panel-title text-info" >Publish House</h2>
       </div>
       <div class="panel-body">
         <form name="form" (ngSubmit)="f.form.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm"
@@ -11,7 +11,7 @@
             <label for="name" class="control-label col-md-4 requiredField"> Name<span
               class="asteriskField">*</span> </label>
             <div class="controls col-md-8 ">
-              <input class="input-md  textinput textInput form-control"  type="text" class="form-control" name="name"
+              <input class="input-md  textinput textInput form-control"  type="text"  name="name"
                      placeholder=" Name *" [(ngModel)]="form.name"
                      #name="ngModel" required/>
             </div>
@@ -23,7 +23,7 @@
             <label for="address" class="control-label col-md-4  requiredField"> Address<span
               class="asteriskField">*</span> </label>
             <div class="controls col-md-8 ">
-              <input class="input-md textlinput form-control" type="text" class="form-control" name="address"
+              <input class="input-md textlinput form-control" type="text"  name="address"
                      placeholder="Address *"
                      [(ngModel)]="form.address" #address="ngModel" required style="margin-bottom: 10px"/>
             </div>
@@ -36,7 +36,7 @@
               class="asteriskField">*</span> </label>
             <div class="controls col-md-8 ">
               <input class="input-md textinput  form-control" style="margin-bottom: 10px" type="text"
-                     class="form-control" placeholder="BedRoom *" name="bedRooms"
+                      placeholder="BedRoom *" name="bedRooms"
                      [(ngModel)]="form.bedRooms" #bedRooms="ngModel" min="0" required/>
             </div>
             <div *ngIf="f.submitted && bedRooms.invalid">
@@ -48,7 +48,7 @@
               class="asteriskField">*</span> </label>
             <div class="controls col-md-8 ">
               <input class="input-md textinput textInput form-control" style="margin-bottom: 10px" type="number"
-                     class="form-control" placeholder="bathRooms *" name="bathRooms"
+                     placeholder="bathRooms *" name="bathRooms"
                      [(ngModel)]="form.bathRooms" #bathRooms="ngModel" min="0" required/>
             </div>
             <div *ngIf="bathRooms.touched && bathRooms.invalid">
@@ -59,13 +59,20 @@
             <label for="images" class="control-label col-md-4  requiredField">Images<span
               class="asteriskField">*</span> </label>
             <div class="controls col-md-8 ">
-            <input class="input-md textinput textInput form-control" type="file" accept="image/*" class="form-control" name="images"
+            <input class="input-md textinput textInput form-control" type="file" accept="image/*"  name="images"
                    [(ngModel)]="form.images"
                    #images="ngModel" (change)="getFileDetail($event)" multiple required >
             </div>
             <div *ngIf="f.submitted && images.invalid">
               <div *ngIf="images.errors.required" class="alert alert-danger">Image is required</div>
             </div>
+          </div>
+          <div *ngIf="currentFileUpload" class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+                 role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                 aria-valuemin="0" aria-valuemax="100"
+                 [ngStyle]="{width:progress.percentage+'%'}">
+              {{progress.percentage}}%</div>
           </div>
           <div class="form-group required">
             <label for="category" class="control-label col-md-4  requiredField">Category<span
@@ -74,12 +81,10 @@
 
             <select class="form-control" name="category" [(ngModel)]="form.category" #category="ngModel"
                     required>
-              <option class="form-control" class="hidden" selected disabled>Please select House
+              <option class="form-control hidden" selected disabled>Please select House
                 Category
               </option>
-              <option value="Apartment">Apartment</option>
-              <option value="VILLA">VILLA</option>
-              <option value="NEARBY VILLA">NEARBY VILLA</option>
+              <option *ngFor=" let category of categories" value="{{category.id}}">{{category.name}}</option>
             </select>
             </div>
           </div>
@@ -88,7 +93,7 @@
               class="asteriskField">*</span> </label>
             <div class="controls col-md-8 ">
               <input class="input-md textinput textInput form-control" style="margin-bottom: 10px" type="text"
-                     class="form-control" placeholder="Price PerNight* *" name="pricePerNight"
+                     placeholder="Price PerNight* *" name="pricePerNight"
                      [(ngModel)]="form.pricePerNight" #pricePerNight="ngModel" required min="0"/>
             </div>
             <div *ngIf="f.submitted && pricePerNight.invalid">
@@ -105,11 +110,11 @@
             </div>
           </div>
           <div class="aab controls col-md-4 "></div>
-          <input type="submit" class="btnRegister" value="Publish House " class="btn btn-primary btn btn-info"/>
-          <div *ngIf="f.submitted && !isPublished" class="alert alert-warning">
-            publish house failed!<br/>{{errorMessage}}
+          <input type="submit" class="btnRegister btn btn-primary btn btn-info" value="Publish House "/>
+          <div *ngIf="f.submitted && !isPublished && isPublishedFail" class="alert alert-warning">
+            Publish house failed!<br/>{{errorMessage}}
           </div>
-          <div *ngIf="f.submitted && isPublished" class="alert alert-success">
+          <div *ngIf="f.submitted && isPublished && !isPublishedFail" class="alert alert-success">
             Publish house successfully<br/>
           </div>
 

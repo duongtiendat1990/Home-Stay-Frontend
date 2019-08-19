@@ -1,14 +1,18 @@
 <div class="row d-flex justify-content-center">
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm" novalidate>
+  <form name="form" (ngSubmit)="f.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm" >
     <div class="form-group">
       <label for="name">Your name</label>
-      <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel"/>
+      <input type="text" class="form-control" name="name" [(ngModel)]="updateInfo.name" #name="ngModel" minlength="3" maxlength="50"/>
+      <div *ngIf="name.touched && name.invalid">
+        <div *ngIf="name.errors.minlength" class="text-danger">Name must contain at least 3 characters</div>
+        <div *ngIf="name.errors.maxlength" class="text-danger">Name can only contain maximum 50 characters</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="birthday">Birthday</label>
-      <input type="date" class="form-control" name="birthday" [(ngModel)]="form.birthday" #birthday="ngModel"
+      <input type="date" class="form-control" name="birthday" [ngModel]="updateInfo.birthday|date:'yyyy-MM-dd'" (ngModelChange)="updateInfo.birthday=$event" #birthday="ngModel"
              min="{{minDate}}" max="{{maxDate}}"/>
-      <div *ngIf="f.submitted && birthday.invalid">
+      <div *ngIf="birthday.touched && birthday.invalid">
         <div *ngIf="birthday.errors.min">Please enter your real birthday</div>
         <div *ngIf="birthday.errors.max">You are not old enough</div>
       </div>
@@ -17,35 +21,47 @@
       <div class="form-check">
         <label class="form-check-label" for="gender-male">
           <input id="gender-male" type="radio" class="form-check-input" name="gender" ng-value="MALE"
-                 (change)="changeGender(false)">Male
+              [checked]="updateInfo.gender == 'MALE'"  (change)="changeGender(false)">Male
         </label>
       </div>
       <div class="form-check">
         <label class="form-check-label" for="gender-female">
           <input id="gender-female" type="radio" class="form-check-input" name="gender" ng-value="FEMALE"
-                 (change)="changeGender(true)">Female
+                 [checked]="updateInfo.gender == 'FEMALE'"  (change)="changeGender(true)">Female
         </label>
       </div>
     </div>
     <div class="form-group">
       <label for="address">Address</label>
-      <input type="text" class="form-control" name="address" [(ngModel)]="form.address" #address="ngModel"/>
+      <input type="text" class="form-control" name="address" [(ngModel)]="updateInfo.address" #address="ngModel"/>
     </div>
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
-      <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="form.phoneNumber" #phoneNumber="ngModel"
+      <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="updateInfo.phoneNumber" #phoneNumber="ngModel"
              pattern="0([0-9]{9,10})"/>
-      <div *ngIf="f.submitted && phoneNumber.invalid">
+      <div *ngIf="phoneNumber.touched && phoneNumber.invalid">
         <div *ngIf="phoneNumber.errors.pattern">Phone number is invalid</div>
       </div>
     </div>
     <div class="form-group">
-      <label for="avatar">Avatar</label>
-      <input type="file" accept="image/*" class="form-control" name="avatar" [(ngModel)]="form.avatar" #avatar="ngModel"
+      <label>
+        <span><img src="{{updateInfo.avatarUrl}}" class="img-thumbnail md-avatar" alt=""></span>
+        <input type="file" accept="image/*" class="form-control" style="display: none" name="avatar" [(ngModel)]="updateInfo.avatar" #avatar="ngModel"
              (change)="fileChange($event)">
+      </label>
+      <div *ngIf="currentFileUpload" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+             aria-valuemin="0" aria-valuemax="100"
+             [ngStyle]="{width:progress.percentage+'%'}">
+          {{progress.percentage}}%</div>
+      </div>
     </div>
     <div class="form-group">
       <button class="btn btn-primary">Update</button>
+      <div *ngIf="f.submitted&&isUpdated" class="alert alert-success">
+        Update info successfully!
+      </div>
       <div *ngIf="f.submitted && isUpdateFailed" class="alert alert-warning">
         Update failed!<br/>{{errorMessage}}
       </div>

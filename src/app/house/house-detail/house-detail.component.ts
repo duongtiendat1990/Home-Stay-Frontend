@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HouseInfo} from '../../model/house_info';
 import {HouseService} from '../../services/house.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {BookHouse} from '../../model/book_house';
 import {BookService} from '../../services/book.service';
+import {House} from '../../model/house';
 
 function compareTwoDates(c: AbstractControl) {
   const v = c.value;
@@ -20,14 +20,13 @@ function compareTwoDates(c: AbstractControl) {
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent implements OnInit {
-  houseDetail: HouseInfo = new HouseInfo();
+  house: House = new House();
   errorMessage: string;
   bookForm: FormGroup;
   book: BookHouse;
   isBookHouse = false;
   invalidMessage: string;
   booked = false;
-  house;
   total;
   authority = false;
   isRented;
@@ -43,7 +42,7 @@ export class HouseDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.houseService.getHouseInfoById(id).subscribe(
       data => {
-        this.houseDetail = data;
+        this.house = this.convertHouse(data);
       }, error => {
         this.errorMessage = error.error.message;
       }
@@ -59,7 +58,6 @@ export class HouseDetailComponent implements OnInit {
   }
 
   onBooking() {
-  debugger;
     this.booking = true;
     this.invalidMessage = null;
     const id = +this.route.snapshot.paramMap.get('id');
@@ -77,7 +75,28 @@ export class HouseDetailComponent implements OnInit {
 
 
   }
+  private convertHouse(data) {
+    const house: House = new House();
+    for (const key of Object.keys(data)) {
+      if (key === 'category') {
+        house[key] = data[key].name;
+      } else if (key === 'images') {
+        house[key] = this.getImageUrl(data, key);
+        console.log('foo');
+      } else {
+        house[key] = data[key];
+      }
+    }
+    return house;
+  }
 
+  private getImageUrl(data, key) {
+    const images = [data[key].length];
+    for (let i = 0; i < data[key].length; i++) {
+      images[i] = (data[key][i].imageUrl);
+    }
+    return images;
+  }
 
   compareTwoDates() {
     // @ts-ignore

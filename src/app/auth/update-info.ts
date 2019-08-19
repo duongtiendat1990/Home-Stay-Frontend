@@ -6,14 +6,14 @@ export class UpdateInfo {
   gender: Gender;
   address: string;
   phoneNumber: string;
-  avatar: File;
+  avatarUrl: string;
 
-  constructor(name: string, birthday: Date, gender: Gender, address: string, phoneNumber: string, avatar: File) {
+  constructor(name?: string, birthday?: Date, gender?: Gender, address?: string, phoneNumber?: string, avatarUrl?: string) {
     this.name = name;
     this.birthday = birthday;
     this.gender = gender;
     this.address = address;
     this.phoneNumber = phoneNumber;
-    this.avatar = avatar;
+    this.avatarUrl = avatarUrl;
   }
 }

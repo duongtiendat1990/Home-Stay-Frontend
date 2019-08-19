@@ -85,9 +85,16 @@
       </div>
       <div class="form-group">
         <label for="avatar">Avatar</label>
-        <!--<input type="file" class="form-control" name="avatar" [(ngModel)]="form.avatar" #avatar="ngModel"/>-->
+        <!--<input type="file" class="form-control" name="avatarUrl" [(ngModel)]="form.avatarUrl" #avatarUrl="ngModel"/>-->
         <input type="file" accept="image/*" class="form-control" name="avatar" [(ngModel)]="form.avatar"
                #avatar="ngModel" (change)="fileChange($event)">
+      </div>
+      <div *ngIf="currentFileUpload" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+             aria-valuemin="0" aria-valuemax="100"
+             [ngStyle]="{width:progress.percentage+'%'}">
+          {{progress.percentage}}%</div>
       </div>
       <div class="form-group">
         <button [disabled]="f.invalid" type="submit" class="btn btn-primary">Register</button>

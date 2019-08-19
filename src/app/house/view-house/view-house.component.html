@@ -1,11 +1,11 @@
 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
   <ul class="carousel-indicators">
-    <li *ngFor="let imgSrc of houseDetail.imagesSrc; index as i" data-target="#housePhotos" [attr.data-slide-to]="i"
+    <li *ngFor="let imgSrc of house.imagesSrc; index as i" data-target="#housePhotos" [attr.data-slide-to]="i"
         [ngClass]="i===0?'active':''"></li>
   </ul>
 
   <div class="carousel-inner">
-    <div *ngFor="let imgSrc of houseDetail.imagesSrc; index as i"
+    <div *ngFor="let imgSrc of house.imagesSrc; index as i"
          [ngClass]="i===0?'carousel-item active':'carousel-item'" style="height: 300px">
       <img src="{{imgSrc}}" alt="House Photo">
     </div>
@@ -21,26 +21,26 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <h3>{{houseDetail.name}}</h3>
+      <h3>{{house.name}}</h3>
       <h4><i class='fas fa-house-damage'></i>
-        {{houseDetail.category}}</h4>
+        {{house.category}}</h4>
       <h5><i class='fas fa-city'></i>
-        {{houseDetail.address}}</h5>
+        {{house.address}}</h5>
       <p><i class='fas fa-bed'></i>
-        {{houseDetail.bedRooms}} Bed rooms</p>
+        {{house.bedRooms}} Bed rooms</p>
       <p><i class='fas fa-bath'></i>
-        {{houseDetail.bathRooms}} Bath rooms</p>
+        {{house.bathRooms}} Bath rooms</p>
       <p><i class='fas fa-money-check-alt'></i>
-        {{houseDetail.pricePerNight}} $/night</p>
+        {{house.pricePerNight}} $/night</p>
 
     </div>
     <div class="col-6">
-      <p *ngIf="houseDetail.isRented"><i class='fas fa-caret-square-right'></i>
+      <p *ngIf="house.isRented"><i class='fas fa-caret-square-right'></i>
         Rented</p>
-      <p *ngIf="!houseDetail.isRented"><i class='fas fa-caret-square-right'></i>
+      <p *ngIf="!house.isRented"><i class='fas fa-caret-square-right'></i>
         Available</p>
       <p><i class="material-icons">description</i>
-        {{houseDetail.description}}</p>
+        {{house.description}}</p>
     </div>
   </div>
 </div>

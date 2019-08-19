@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HouseInfo} from '../../model/house_info';
 import {ActivatedRoute} from '@angular/router';
 import {HouseService} from '../../services/house.service';
+import {House} from '../../model/house';
 
 @Component({
   selector: 'app-view-house',
@@ -10,7 +10,7 @@ import {HouseService} from '../../services/house.service';
 })
 export class ViewHouseComponent implements OnInit {
 
-  houseDetail: HouseInfo = new HouseInfo();
+  house: House = new House();
   errorMessage: string;
 
   constructor(private route: ActivatedRoute, private houseService: HouseService) {
@@ -20,7 +20,7 @@ export class ViewHouseComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.houseService.getHouseInfoById(id).subscribe(
       data => {
-        this.houseDetail = data;
+        this.house = data;
       }, error => {
         this.errorMessage = error.error.message;
       }

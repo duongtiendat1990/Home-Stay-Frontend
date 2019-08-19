@@ -1,13 +1,13 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {HouseInfo} from './model/house-info';
 import {HouseCriteria} from './model/house-criteria';
+import {House} from './model/house';
 
 @Pipe({
   name: 'houseFilter'
 })
 export class HouseFilterPipe implements PipeTransform {
 
-  transform(houses: HouseInfo[], criteria: HouseCriteria): any {
+  transform(houses: House[], criteria: HouseCriteria): any {
     if (!houses) {
       return houses;
     }

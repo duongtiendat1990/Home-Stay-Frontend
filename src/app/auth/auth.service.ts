@@ -6,6 +6,7 @@ import {JwtResponse} from './jwt-response';
 import {AuthLoginInfo} from './login-info';
 import {ResetPassword} from './resetPassword';
 import {ChangePassword} from './changePassword';
+import {UpdateInfo} from './update-info';
 
 const httpOption = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -32,10 +33,6 @@ export class AuthService {
   }
 
   signUp(info: FormData): Observable<any> {
-    // const req = new HttpRequest('POST', this.signupUrl, info, {
-    //   reportProgress: true,
-    //   responseType: 'text'
-    // });
     return this.http.post(this.signupUrl, info);
   }
 
@@ -49,6 +46,10 @@ export class AuthService {
 
   updateInfo(info: FormData): Observable<JwtResponse> {
     return this.http.put<JwtResponse>(this.updateInfoUrl, info);
+  }
+
+  getUpdateInfoForm(): Observable<any> {
+    return this.http.get(this.updateInfoUrl);
   }
 
   updatePassword(info: ChangePassword): Observable<JwtResponse> {

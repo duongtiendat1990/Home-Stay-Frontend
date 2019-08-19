@@ -1,3 +1,8 @@
 .form-gap {
   padding-top: 70px;
 }
+.md-avatar {
+  vertical-align: middle;
+  width: 7rem;
+  height: 7rem;
+}

@@ -9,7 +9,7 @@ import {SearchBookHouse} from '../model/search_book_house';
   providedIn: 'root'
 })
 export class BookService {
-  private API_URL = 'http://localhost:8080/api/book';
+  private API_URL = '/api/book';
 
   constructor(private http: HttpClient) {
   }
@@ -26,7 +26,7 @@ export class BookService {
     return this.http.delete(this.API_URL + '/' + id);
   }
 
-  getBookHouse(data: SearchBookHouse): Observable<any> {
+  getBookHouse(data: string): Observable<any> {
     return this.http.get(this.API_URL + '/' + 'owner/' + data);
   }
 }

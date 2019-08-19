@@ -1,14 +1,14 @@
 <div id="housePhotos" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ul class="carousel-indicators">
-    <li *ngFor="let imgSrc of houseDetail.imagesSrc; index as i" data-target="#housePhotos" [attr.data-slide-to]="i"
+    <li *ngFor="let image of house.images; index as i" data-target="#housePhotos" [attr.data-slide-to]="i"
         [ngClass]="i===0?'active':''"></li>
   </ul>
   <!-- The slideshow -->
   <div class="carousel-inner">
-    <div *ngFor="let imgSrc of houseDetail.imagesSrc; index as i"
+    <div *ngFor="let image of house.images; index as i"
          [ngClass]="i===0?'carousel-item active':'carousel-item'" style="height: 300px">
-      <img src="{{imgSrc}}" alt="House Photo">
+      <img src="{{image}}" alt="House Photo">
     </div>
   </div>
   <!-- Left and right controls -->
@@ -23,24 +23,24 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <h3>{{houseDetail.name}}</h3>
+      <h3>{{house.name}}</h3>
       <h4><i class='fas fa-house-damage'></i>
-        {{houseDetail.category}}</h4>
+        {{house.category}}</h4>
       <h5><i class='fas fa-city'></i>
-        {{houseDetail.address}}</h5>
+        {{house.address}}</h5>
       <p><i class='fas fa-bed'></i>
-        {{houseDetail.bedRooms}} Bed rooms</p>
+        {{house.bedRooms}} Bed rooms</p>
       <p><i class='fas fa-bath'></i>
-        {{houseDetail.bathRooms}} Bath rooms</p>
+        {{house.bathRooms}} Bath rooms</p>
       <p><i class='fas fa-money-check-alt'></i>
-        {{houseDetail.pricePerNight}} $/night</p>
+        {{house.pricePerNight}} $/night</p>
 
-      <p *ngIf="houseDetail.isRented"><i class='fas fa-caret-square-right'></i>
+      <p *ngIf="house.isRented"><i class='fas fa-caret-square-right'></i>
         Rented</p>
-      <p *ngIf="!houseDetail.isRented"><i class='fas fa-caret-square-right'></i>
+      <p *ngIf="!house.isRented"><i class='fas fa-caret-square-right'></i>
         Available</p>
       <p><i class="material-icons">description</i>
-        {{houseDetail.description}}</p>
+        {{house.description}}</p>
     </div>
     <div class=" col-6">
       <form [formGroup]="bookForm" (ngSubmit)="onBooking()">
@@ -70,7 +70,7 @@
       <div *ngIf="!booked && booking" class="alert alert-danger">
         You are booked this house fail
       </div>
-      <div *ngIf="houseDetail.isRented && booking" class="alert alert-danger">
+      <div *ngIf="house.isRented && booking" class="alert alert-danger">
         Sorry the house is rented
       </div>
       <div *ngIf="!authority && booking">

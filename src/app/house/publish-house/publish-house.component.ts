@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HouseService} from '../../services/house.service';
 import {House} from '../../model/house';
+import {UploadFileService} from '../../services/upload-file.service';
+import {FileUpload} from '../../model/file-upload';
+import {throws} from 'assert';
 
 @Component({
   selector: 'app-publish-house',
@@ -9,17 +12,21 @@ import {House} from '../../model/house';
 })
 export class PublishHouseComponent implements OnInit {
   form: any = {};
-  progress = 0;
+  progress: { percentage: number } = {percentage: 0};
   createHouse: House;
   isPublished = false;
+  isPublishedFail = false;
   errorMessage = '';
   info: FormData = new FormData();
   images: File [] = [];
+  categories = [];
+  private data: FormData;
 
-  constructor(private authService: HouseService) {
+  constructor(private houseService: HouseService, private uploadService: UploadFileService) {
   }
 
   ngOnInit() {
+    this.houseService.getCategories().subscribe(data => this.categories = data);
   }
 
   getFileDetail(e) {
@@ -28,30 +35,53 @@ export class PublishHouseComponent implements OnInit {
     }
   }
 
+  upload(self, resolve, reject, i) {
+    self.currentFileUpload = new FileUpload(self.images[i]);
+    self.uploadService.pushFileToStorage(self.currentFileUpload, self.progress, resolve, reject);
+  }
 
-  onSubmit() {
-    this.createHouse = new House(
-      this.form.name,
-      this.form.address,
-      this.form.bathRooms,
-      this.form.bedRooms,
-      this.form.pricePerNight,
-      this.form.category,
-      this.form.description,
-      this.images
-    );
-    this.info = toFormData(this.createHouse);
-    this.authService.publishHouse(this.info).subscribe(
-      data => {
-        console.log(data);
-        this.isPublished = true;
-      },
-      error => {
-        console.log(error);
-        this.errorMessage = error.error.message;
-        this.isPublished = false;
-      }
-    );
+  async onSubmit() {
+    try {
+      const urls: string[] = [];
+      await this.uploadGallery(urls);
+      this.createHouse = new House(
+        this.form.name,
+        this.form.address,
+        this.form.bedRooms,
+        this.form.bathRooms,
+        this.form.description,
+        this.form.pricePerNight,
+        this.form.category,
+        urls
+      );
+      this.data = toFormData(this.createHouse);
+      this.houseService.publishHouse(this.data).subscribe(
+        data => {
+          console.log(data);
+          this.isPublished = true;
+          this.isPublishedFail = false;
+        },
+        error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.isPublished = false;
+          this.isPublishedFail = true;
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
+
+  async uploadGallery(urls) {
+    const self = this;
+    for (let i = 0; i < this.images.length; i++) {
+      await new Promise(function (resolve, reject) {
+        self.upload(self, resolve, reject, i);
+      }).then(url => urls.push(url.toString()))
+        .catch(error => throws(error));
+    }
   }
 }
 

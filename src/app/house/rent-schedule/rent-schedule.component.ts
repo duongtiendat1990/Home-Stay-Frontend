@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from '../../services/book.service';
 import {ActivatedRoute} from '@angular/router';
+import {SearchBookHouse} from '../../model/search_book_house';
 
 @Component({
   selector: 'app-rent-schedule',
@@ -8,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./rent-schedule.component.css']
 })
 export class RentScheduleComponent implements OnInit {
-  bookHouse;
+  bookHouse: SearchBookHouse;
   filter: any;
   p: any;
 

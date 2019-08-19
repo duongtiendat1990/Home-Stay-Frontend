@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {House} from '../model/house';
 
 
 const httpOption = {
@@ -19,12 +20,8 @@ export class HouseService {
   }
 
 
-  publishHouse(data: FormData): Observable<HttpEvent<{}>> {
-    const req = new HttpRequest('POST', this.ownerResource + '/houses', data, {
-      reportProgress: true,
-      responseType: 'text'
-    });
-    return this.http.request(req);
+  publishHouse(data: FormData): Observable<any> {
+    return this.http.post(this.ownerResource + '/houses', data);
   }
 
   getAllHouses(): Observable<any> {
@@ -38,6 +35,7 @@ export class HouseService {
   getHouseInfoById(id: number): Observable<any> {
     return this.http.get(this.guestResource + '/houses' + '/' + id);
   }
+
   getListHouseByUser(): Observable<any> {
     return this.http.get<any>(this.ownerResource + '/house');
   }
@@ -52,6 +50,9 @@ export class HouseService {
 
   getHouse(id: number): Observable<any> {
     return this.http.get<any>(this.ownerResource + '/' + id);
+  }
 
+  getCategories(): Observable<any> {
+    return this.http.get<any>(this.ownerResource + '/categories');
   }
 }

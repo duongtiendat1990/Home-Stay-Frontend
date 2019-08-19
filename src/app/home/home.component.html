@@ -147,7 +147,7 @@
         <div *ngFor="let house of houses | houseFilter:{name: criteria.name, address: criteria.address, bedRooms: criteria.bathRooms,
         bathRooms: criteria.bathRooms, category: criteria.category, minPrice: criteria.minPrice, maxPrice: criteria.maxPrice, status: criteria.status}" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
-            <a [routerLink]="['/home/' + house.id]"><img class="card-img-top" src="{{house.imagesSrc[0]}}"  height="200px" alt=""></a>
+            <a [routerLink]="['/home/' + house.id]"><img class="card-img-top" src="{{house.images[0]}}"  height="200px" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">{{house.name}}</a>
