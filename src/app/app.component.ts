@@ -12,7 +12,7 @@ import * as $ from 'jquery';
 })
 export class AppComponent implements OnInit {
   private roles: string[];
-  private authority: string;
+  authority: string;
   private avatarLink: string;
   criteria: HouseCriteria = new HouseCriteria();
 

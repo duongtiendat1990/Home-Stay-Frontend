@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../auth/auth.service';
-import {HttpEvent, HttpEventType, HttpResponse} from '@angular/common/http';
-import {pipe} from 'rxjs';
-import {filter, map, tap} from 'rxjs/operators';
 import {Gender} from '../auth/gender';
 import {SignUpInfo} from '../auth/signup-info';
-import {Router} from '@angular/router';
 import {FileUpload} from '../model/file-upload';
 import {UploadFileService} from '../services/upload-file.service';
 

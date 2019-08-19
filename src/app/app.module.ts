@@ -16,8 +16,6 @@ import { AdminComponent } from './admin/admin.component';
 import { PmComponent } from './pm/pm.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
-import { FileUploadComponent } from './file-upload/file-upload.component';
-import { ProgressComponent } from './progress/progress.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
@@ -44,11 +42,8 @@ import { RentScheduleComponent } from './house/rent-schedule/rent-schedule.compo
     UserMenuComponent,
     AdminComponent,
     PmComponent,
-    FileUploadComponent,
-    ProgressComponent,
     UpdateProfileComponent,
     HomeComponent,
-    ProgressComponent,
     ForgotPasswordComponent,
     RestPasswordComponent,
     UserMenuComponent,
