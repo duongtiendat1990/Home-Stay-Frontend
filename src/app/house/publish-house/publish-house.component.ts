@@ -20,6 +20,7 @@ export class PublishHouseComponent implements OnInit {
   info: FormData = new FormData();
   images: File [] = [];
   categories = [];
+  currentFileUpload: FileUpload;
   private data: FormData;
 
   constructor(private houseService: HouseService, private uploadService: UploadFileService) {

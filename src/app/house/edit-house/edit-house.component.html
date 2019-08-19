@@ -73,12 +73,12 @@
               class="asteriskField">*</span> </label>
             <div class="controls col-md-8 ">
 
-            <select class="form-control" name="category" [ngModel]="house.category.id" (ngModelChange)="house.category = $event" #category = "ngModel"
+            <select class="form-control" name="category" [ngModel]="house.category" (ngModelChange)="house.category = $event" #category = "ngModel"
                     required>
               <option class="form-control" class="hidden" selected disabled>Please select House
                 Category
               </option>
-              <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+              <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
             </select>
             </div>
           </div>

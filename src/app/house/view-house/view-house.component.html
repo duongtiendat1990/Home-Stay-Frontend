@@ -1,13 +1,13 @@
 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
   <ul class="carousel-indicators">
-    <li *ngFor="let imgSrc of house.imagesSrc; index as i" data-target="#housePhotos" [attr.data-slide-to]="i"
+    <li *ngFor="let image of house.images; index as i" data-target="#housePhotos" [attr.data-slide-to]="i"
         [ngClass]="i===0?'active':''"></li>
   </ul>
 
   <div class="carousel-inner">
-    <div *ngFor="let imgSrc of house.imagesSrc; index as i"
+    <div *ngFor="let image of house.images; index as i"
          [ngClass]="i===0?'carousel-item active':'carousel-item'" style="height: 300px">
-      <img src="{{imgSrc}}" alt="House Photo">
+      <img src="{{image}}" alt="House Photo">
     </div>
   </div>
   <!-- Left and right controls -->

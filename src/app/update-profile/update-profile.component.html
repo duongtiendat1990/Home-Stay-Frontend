@@ -46,7 +46,7 @@
     <div class="form-group">
       <label>
         <span><img src="{{updateInfo.avatarUrl}}" class="img-thumbnail md-avatar" alt=""></span>
-        <input type="file" accept="image/*" class="form-control" style="display: none" name="avatar" [(ngModel)]="updateInfo.avatar" #avatar="ngModel"
+        <input type="file" accept="image/*" class="form-control" style="display: none" name="avatar" [(ngModel)]="updateInfo.avatarUrl" #avatar="ngModel"
              (change)="fileChange($event)">
       </label>
       <div *ngIf="currentFileUpload" class="progress">
